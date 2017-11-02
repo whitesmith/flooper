@@ -4,7 +4,9 @@ Uses flex order attribute to loop a list of items instead of duplication or expe
 
 Name: Flooper.js<br>
 Version: 'v0.0.1'<br>
-Author: Tomás Marques | https://github.com/tomasmcm | @tomasmcm<br>
+Authors: <br>
+Tomás Marques | https://github.com/tomasmcm | @tomasmcm<br>
+Renato de Leão | https://github.com/renatodeleao | @renatodeleao<br>
 <br>
 Description: Flex order looper. Uses flex order attribute to loop a list of items instead of duplication or expensive multiItem position calculations.<br>
 Original: https://codepen.io/tomasmcm/pen/eeJpNb<br>
