@@ -1,0 +1,27 @@
+{
+  "name": "flooper",
+  "version": "0.0.1",
+  "description": "Flex order looper. Uses flex order attribute to loop a list of items instead of duplication or expensive multiItem position calculations.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomasmcm/Flooper.js.git"
+  },
+  "keywords": [
+    "Flex",
+    "Order",
+    "Looper"
+  ],
+  "author": [
+    "Tomás Marques | https://github.com/tomasmcm | @tomasmcm",
+    "Renato de Leão | https://github.com/renatodeleao | @renatodeleao"
+  ],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tomasmcm/Flooper.js/issues"
+  },
+  "homepage": "https://github.com/tomasmcm/Flooper.js#readme"
+}
