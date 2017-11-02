@@ -15,6 +15,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  * @param {string} [flooper='.js-flooper']  - flooper classname hook
  * @param {string} [flooper='.js-flooper-item'] - each item classname hook
  * @param {number} [bufferSize=10] - amount of pixels after block as past left side - The callback that handles the response.
+ * @param {number} [speed=1] - amount of pixels container element should move per call.
  *
  */
 
@@ -23,6 +24,7 @@ var Flooper = function () {
     var flooper = arguments.length <= 0 || arguments[0] === undefined ? '.js-flooper' : arguments[0];
     var flooperItem = arguments.length <= 1 || arguments[1] === undefined ? '.js-flooper-item' : arguments[1];
     var bufferSize = arguments.length <= 2 || arguments[2] === undefined ? 10 : arguments[2];
+    var speed = arguments.length <= 3 || arguments[3] === undefined ? 1 : arguments[3];
 
     _classCallCheck(this, Flooper);
 
@@ -46,6 +48,7 @@ var Flooper = function () {
     this.flooperItemCount = this.flooperItem.length;
     this.curBlock = 0;
     this.order = this.flooperItemCount + 1;
+    this.speed = speed;
 
     // Bindings
     this.step = this.step.bind(this);
@@ -61,7 +64,7 @@ var Flooper = function () {
   };
 
   Flooper.prototype.step = function step(timeStamp) {
-    this.left--;
+    this.left -= this.speed;
     this.checkBlocks();
 
     this.flooper.style[this.transformProp] = 'translateX(' + this.left + 'px)';

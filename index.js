@@ -11,6 +11,7 @@
 * @param {string} [flooper='.js-flooper']  - flooper classname hook
 * @param {string} [flooper='.js-flooper-item'] - each item classname hook
 * @param {number} [bufferSize=10] - amount of pixels after block as past left side - The callback that handles the response.
+* @param {number} [speed=1] - amount of pixels container element should move per call.
 *
 */
 class Flooper{
@@ -31,7 +32,8 @@ class Flooper{
   constructor(
     flooper = '.js-flooper',
     flooperItem = '.js-flooper-item',
-    bufferSize = 10
+    bufferSize = 10,
+    speed = 1
   ) {
     this.left = 0;
     this.bufferSize = bufferSize;
@@ -40,6 +42,7 @@ class Flooper{
     this.flooperItemCount = this.flooperItem.length;
     this.curBlock = 0;
     this.order = this.flooperItemCount + 1;
+    this.speed = speed;
 
     // Bindings
     this.step = this.step.bind(this);
@@ -52,7 +55,7 @@ class Flooper{
   }
 
   step(timeStamp){
-    this.left--;
+    this.left -= this.speed;
     this.checkBlocks();
 
     this.flooper.style[this.transformProp] = `translateX(${this.left}px)`

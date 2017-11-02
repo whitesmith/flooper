@@ -14,3 +14,4 @@ Adaptation: https://github.com/renatodeleao
 @param {string} [flooper='.js-flooper']  - flooper classname hook
 @param {string} [flooper='.js-flooper-item'] - each item classname hook
 @param {number} [bufferSize=10] - amount of pixels after block as past left side - The callback that handles the response.
+@param {number} [speed=1] - amount of pixels container element should move per call.
