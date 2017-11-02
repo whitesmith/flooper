@@ -15,3 +15,6 @@ https://codepen.io/tomasmcm/pen/eeJpNb<br>
 @param {string} [flooper='.js-flooper']  - flooper classname hook<br>
 @param {string} [flooper='.js-flooper-item'] - each item classname hook<br>
 @param {number} [bufferSize=10] - amount of pixels after block as past left side - The callback that handles the response.<br>
+<br>
+## Demo 
+https://tomasmcm.github.io/Flooper.js
