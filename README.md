@@ -11,9 +11,6 @@ Flex order looper. Uses flex order attribute to loop a list of items instead of 
 ## Original<br>
 https://codepen.io/tomasmcm/pen/eeJpNb<br>
 
-## Adaptation<br>
-https://github.com/renatodeleao<br>
-
 ## Usage
 @param {string} [flooper='.js-flooper']  - flooper classname hook<br>
 @param {string} [flooper='.js-flooper-item'] - each item classname hook<br>
