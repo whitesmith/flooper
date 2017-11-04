@@ -18,4 +18,4 @@ https://codepen.io/tomasmcm/pen/eeJpNb<br>
 @param {number} [speed=1] - amount of pixels container element should move per call.<br>
 
 ## Demo
-https://tomasmcm.github.io/Flooper.js
+http://whitesmith.github.io/Flooper.js/
