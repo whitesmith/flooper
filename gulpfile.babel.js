@@ -211,7 +211,7 @@ gulp.task("watch", (cb) => {
         gulp.start("webpack");
       });
 
-      $.watch("./site/sass/**/*", () => {
+      $.watch("./site/stylesheets/**/*", () => {
         gulp.start("sass");
       });
 
