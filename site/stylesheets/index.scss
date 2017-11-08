@@ -1,3 +1,4 @@
+@import "normalize";
 html {
   box-sizing: border-box;
 }
@@ -80,6 +81,8 @@ h1 {
 }
 
 .c-infinity__block {
+	margin: 0 15px;
+	padding: 0 15px;
   width: 136px;
   height: 136px;
   border-radius: 136px;
