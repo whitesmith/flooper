@@ -5,6 +5,11 @@ Uses flex order attribute to loop a list of items instead of duplication or expe
 Tomás Marques | https://github.com/tomasmcm | @tomasmcm<br>
 Renato de Leão | https://github.com/renatodeleao | @renatodeleao<br>
 
+## Dev Setup
+* Clone the repo
+* `npm install`
+* `gulp`
+
 ## Description<br>
 Flex order looper. Uses flex order attribute to loop a list of items instead of duplication or expensive multiItem position calculations.<br>
 
