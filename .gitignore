@@ -60,6 +60,7 @@ typings/
 # Site build folder
 ./public/
 public/
+public
 
 # cache builds
 .publish/
