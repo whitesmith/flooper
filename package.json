@@ -7,7 +7,7 @@
     "start": "gulp",
     "start:production": "gulp --env production",
     "build:production": "gulp build --production",
-    "deploy:site": "git checkout master && git pull origin master && npm run build:production && git subtree push --prefix $npm_package_devPaths_site_dest origin gh-pages",
+    "deploy:site": "git checkout master && git pull origin master && npm run build:production && git push origin `git subtree split --prefix public master`:gh-pages --force",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
