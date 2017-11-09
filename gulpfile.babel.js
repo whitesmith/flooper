@@ -14,15 +14,16 @@ import broswerSync from "browser-sync"
 import runSequence from "run-sequence"
 import minimist from "minimist"
 import webpack from "webpack"
+
 // import webpackDevMiddleware from 'webpack-dev-middleware'
 // import webpackHotMiddleware from 'webpack-hot-middleware'
 import webpackConfig from './webpack.config.babel.js'
+import packageJson from './package.json';
 
-
+// CONSTANTS
+const paths = packageJson.devPaths;
 let $ = gulpLoadPlugins(),
     bs = broswerSync.create();
-
-
 // Environment variables
 let knownOptions = {
   string: "env",
@@ -48,7 +49,7 @@ gulp.task("bs", (cb) => {
   bs.init({
     notify: false,
     server: {
-      baseDir: "./docs",
+      baseDir: paths.site.dest,
       // middleware: [
       //   webpackDevMiddleware(bundler, {
       //     publicPath: webpackConfig.output.publicPath,
@@ -80,7 +81,7 @@ gulp.task("bs:reload", (cb) => {
  * $ gulp clean
  * =======================================================
  */
-gulp.task("clean", (cb) => del(["./dist/", "./docs/"], cb));
+gulp.task("clean", (cb) => del([paths.lib.dest, paths.site.dest], cb));
 
 
 
@@ -91,8 +92,8 @@ gulp.task("clean", (cb) => del(["./dist/", "./docs/"], cb));
  * =======================================================
  */
 gulp.task("copy-assets", () => {
-  return gulp.src(["./site/assets/**/*"])
-  .pipe(gulp.dest("./dist/assets/"))
+  return gulp.src([`${paths.site.src}/assets/**/*`])
+  .pipe(gulp.dest(`${paths.site.dest}assets/`))
   .pipe(bs.stream());
 });
 
@@ -110,10 +111,10 @@ gulp.task("jade", () => {
   ])
   .pipe($.plumber())
   .pipe($.data(() => {
-    return require("./site/jade/config.json");
+    return require(`${paths.site.src}/jade/config.json`);
   }))
   .pipe($.jade({pretty: true}))
-  .pipe(gulp.dest("./docs"))
+  .pipe(gulp.dest(paths.site.dest))
   .pipe(bs.stream());
 });
 
@@ -140,11 +141,26 @@ gulp.task("webpack", (cb) => {
  * $ gulp uglify
  * =======================================================
  */
-gulp.task("uglify", () => {
-  return gulp.src("./dist/**/*.js")
+gulp.task("uglify:lib", () => {
+  return gulp.src(`${paths.lib.dest}/**/*.js`)
   .pipe($.uglify({preserveComments: "some"}))
-  .pipe(gulp.dest("./dist/"))
+  .pipe(gulp.dest(paths.lib.dest))
   .pipe(bs.stream());
+});
+
+gulp.task("uglify:site", () => {
+  return gulp.src(`${paths.site.dest}/**/*.js`)
+  .pipe($.uglify({preserveComments: "some"}))
+  .pipe(gulp.dest(paths.site.dest))
+  .pipe(bs.stream());
+});
+
+gulp.task("uglify", (cb) => {
+  runSequence(
+    "uglify:lib",
+    "uglify:site",
+    cb
+  )
 });
 
 
@@ -159,7 +175,7 @@ gulp.task("sass", () => {
     outputStyle: isProduction ? "compressed" : "expanded"
   };
 
-  return gulp.src("./site/stylesheets/**/*.scss")
+  return gulp.src(`${paths.site.src}/stylesheets/**/*.scss`)
   .pipe($.plumber())
   .pipe($.sass.sync(params).on("error", $.sass.logError))
   .pipe($.autoprefixer({
@@ -170,7 +186,7 @@ gulp.task("sass", () => {
       "Android 4"
     ]
   }))
-  .pipe(gulp.dest("./docs/css"))
+  .pipe(gulp.dest(`${paths.site.dest}/css`))
   .pipe(bs.stream());
 });
 
@@ -202,16 +218,16 @@ gulp.task("watch", (cb) => {
     "build",
     "bs",
     () => {
-      $.watch("./site/jade/**/*", () => {
+      $.watch(`${paths.site.src}/jade/**/*`, () => {
         gulp.start("jade");
       });
 
       // WEBPACK HMR did the job with browser sync
-      $.watch(["./site/js/**/*", "./lib/**/*"], () => {
+      $.watch([`${paths.site.src}/js/**/*`, `${paths.lib.src}/**/*`], () => {
         gulp.start("webpack");
       });
 
-      $.watch("./site/stylesheets/**/*", () => {
+      $.watch(`${paths.site.src}/stylesheets/**/*`, () => {
         gulp.start("sass");
       });
 
@@ -230,3 +246,32 @@ gulp.task("watch", (cb) => {
 gulp.task("default", () => {
   gulp.start("watch");
 });
+
+
+/**
+ * =======================================================
+ * $ Deploy site to gitHubPages
+ * [1] add CNAME copy task to have custom domains
+ * [2] Not working due https://github.com/shinnn/gulp-gh-pages/issues/116
+ *     use `npm run deploy:site` only works on master.
+ *     http://ianmcnally.me/blog/2016/2/4/variables-in-npm-scripts
+ * =======================================================
+ */
+
+gulp.task('deploy:gh-pages', function() {
+  return gulp.src('./site/**')
+    .pipe($.ghPages({
+      remoteUrl: "https://github.com/whitesmith/Flooper.js.git",
+      force: true
+    }));
+});
+
+
+
+// pass flag --env production when using
+gulp.task("deploy:site", () => {
+  runSequence(
+    "build",
+    "deploy:gh-pages"
+  )
+})

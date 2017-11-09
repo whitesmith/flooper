@@ -1,6 +1,9 @@
 import path from "path"
 // import webpack from "webpack"
+import packageJson from './package.json';
 
+// CONSTANTS
+const paths = packageJson.devPaths;
 
 let isProduction = global.isProduction;
 let devtool = isProduction ? null : "#source-map";
@@ -11,9 +14,9 @@ export default {
   entry: {
     // "webpack/hot/dev-server",
     // "webpack-hot-middleware/client",
-    './docs/js/app': "./site/js/app.js",
-    './docs/js/Flooper': "./lib/index.js",
-    './dist/Flooper': "./lib/index.js", // library compiled
+    [`${paths.site.dest}/js/app`]: `${paths.site.src}/js/app.js`,// get site js make it available to site
+    [`${paths.site.dest}/js/Flooper`]: `${paths.lib.src}/index.js`, // get lib make it available to site
+    [`${paths.lib.dest}/Flooper`]: `${paths.lib.src}/index.js`, // library compiled
   },
 
   output: {
