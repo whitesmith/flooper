@@ -1,52 +1,52 @@
 # Flooper.js
 Uses flex order attribute to loop a list of items instead of duplication or expensive multiItem position calculations.
 
-## Demo
+## Demo <br>
 http://whitesmith.github.io/Flooper.js/
 
-## Original<br>
+## Original <br>
 https://codepen.io/tomasmcm/pen/eeJpNb<br>
 
-## Dev Setup
+## Dev Setup <br>
 * Clone the repo
 * `npm install`
 * `gulp`
 
-## Production Build 
+## Production Build <br> 
 `npm run build:prodcution`
 
 
-## Deploy site to gh-pages
+## Deploy site to gh-pages <br>
 `npm run deploy:site`
 
 
-## Usage & Options
+# Usage & Options
 
 #### HTML
 
 ```HTML
 <div class="c-my-flooper js-flooper">
-	...
-	<div class="c-my-flooper__el js-flooper-item"></div>
-	...
+  ...
+  <div class="c-my-flooper__el js-flooper-item"></div>
+  ...
 </div>
 ```
 
 #### CSS
 Don't be a bad boy and put js-hooks classes in your CSS files please.
+Required CSS for the plugin to work:
 
 ```SCSS
-//[1] optional, but recommended
-.c-my-flooper{
-	position: !static; // anything but static
-	whitespace: nowrap;
 
-	display: flex; //[1]
-	flex-wrap: nowrap; //[1]
+.c-my-flooper{
+  position: !static; // anything but static
+  display: flex; 
+  flex-wrap: nowrap;
+  whitespace: nowrap;
 }
 
 .c-my-flopoper__el{
-	//go wild;
+  //go wild;
 }
 ```
 #### Javascript
@@ -56,7 +56,7 @@ instance.init();
 // enjoy
 ```
 
-##### Options & defaults
+#### Options & defaults
 ```javascript
 /**
  * @param {string} [flooper='.js-flooper']  - flooper classname hook
@@ -67,18 +67,18 @@ instance.init();
 
 // defaults
 var instance = new Flooper({
-	flooper: '.js-flooper', // string class selector
-	flooperItem: .js-flooper-item', // 
-	string class selector
-	bufferSize: 10,
-	speed: 1,
+  flooper: '.js-flooper', // string class selector
+  flooperItem: .js-flooper-item', // string class selector
+  bufferSize: 10,
+  speed: 1,
 });
 ``` 
 
-##### Methods
+#### Methods
 After instanciate and init, these are the current methods available.
+
 ```javascript
-//
+// define
 const myFlooper = new Flooper();
 myFlooper.init();
 
@@ -94,5 +94,3 @@ myFlooper.init();
 ## Authors & Credits <br>
 Tomás Marques | https://github.com/tomasmcm | @tomasmcm<br>
 Renato de Leão | https://github.com/renatodeleao | @renatodeleao<br>
-
-
