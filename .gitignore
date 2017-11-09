@@ -57,8 +57,8 @@ typings/
 # dotenv environment variables file
 .env
 
-# Temporary development to be served through BrowserSync
-# Source for deployment
+# Site build folder
+./public/
 public/
 
 # cache builds

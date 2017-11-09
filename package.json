@@ -12,7 +12,7 @@
     "deploy:msg": "git commit -m \"Release with version $npm_package_version at $(date) \"",
     "deploy:gh": "git push origin :gh-pages && git subtree push --prefix $npm_package_devPaths_site_destName origin gh-pages",
     "deploy:reset": "git reset HEAD^",
-    "deploy:site": "npm run build:production && npm run publish:add && npm run publish:msg && npm run publish:gh && npm run publish:reset"
+    "deploy:site": "npm run build:production && npm run deploy:add && npm run deploy:msg && npm run deploy:gh && npm run deploy:reset"
   },
   "repository": {
     "type": "git",
