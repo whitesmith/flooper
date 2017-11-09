@@ -75,8 +75,24 @@ var instance = new Flooper({
 });
 ``` 
 
+##### Methods
+After instanciate and init, these are the current methods available.
+```javascript
+//
+const myFlooper = new Flooper();
+myFlooper.init();
+
+```
+
+| Method                   | Description                           
+| -------------------------| ------------------                    
+| `myFlooper.pause()`      | Pauses the flooper looping animation             
+| `myFlooper.play()`       | Resumes animation if paused                    
+| `myFlooper.slowMotion()` | Reduces speed to half. Currently default behaviour on mouseHover, but soon to be optional            
+
 
 ## Authors & Credits <br>
 Tomás Marques | https://github.com/tomasmcm | @tomasmcm<br>
 Renato de Leão | https://github.com/renatodeleao | @renatodeleao<br>
+
 
