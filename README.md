@@ -10,6 +10,13 @@ Renato de Leão | https://github.com/renatodeleao | @renatodeleao<br>
 * `npm install`
 * `gulp`
 
+## Production Build 
+`npm run build:prodcution`
+
+
+## Deploy site to gh-pages
+`npm run deploy:site`
+
 ## Description<br>
 Flex order looper. Uses flex order attribute to loop a list of items instead of duplication or expensive multiItem position calculations.<br>
 
