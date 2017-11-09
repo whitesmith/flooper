@@ -42,7 +42,7 @@ Required CSS for the plugin to work:
   position: !static; // anything but static
   display: flex; 
   flex-wrap: nowrap;
-  whitespace: nowrap;
+  white-space: nowrap;
 }
 
 .c-my-flopoper__el{
@@ -68,7 +68,7 @@ instance.init();
 // defaults
 var instance = new Flooper({
   flooper: '.js-flooper', // string class selector
-  flooperItem: .js-flooper-item', // string class selector
+  flooperItem: '.js-flooper-item', // string class selector
   bufferSize: 10,
   speed: 1,
 });
