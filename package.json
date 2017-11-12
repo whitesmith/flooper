@@ -6,7 +6,7 @@
   "scripts": {
     "start": "gulp",
     "start:production": "gulp --env production",
-    "build:production": "gulp build --production",
+    "build:production": "gulp build --env production",
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy:add": "git add -f \"public/*\"",
     "deploy:msg": "git commit -m \"Release with version $npm_package_version at $(date) \"",
