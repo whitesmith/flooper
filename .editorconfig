@@ -28,7 +28,7 @@ indent_style = space
 indent_size = 2
 
 
-[*.{html,hbs,erb,haml}]
+[*.{html,hbs,erb,haml,jade}]
 indent_style = space
 indent_size = 2
 
