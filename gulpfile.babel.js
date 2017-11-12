@@ -1,9 +1,9 @@
 /*
   Forked of: https://github.com/tsuyoshiwada/gulp-babel-boilerplate
 
-  Mojor differences updates: 
+  Mojor differences updates:
   1. replace deprecated rimraf per del
-  2. added webpack HMR to work with browserSync. 
+  2. added webpack HMR to work with browserSync.
      🙌 http://jsramblings.com/2016/07/16/hot-reloading-gulp-webpack-browsersync.webpackHotMiddleware
 */
 import gulp from "gulp"
@@ -17,7 +17,7 @@ import webpack from "webpack"
 
 // import webpackDevMiddleware from 'webpack-dev-middleware'
 // import webpackHotMiddleware from 'webpack-hot-middleware'
-import webpackConfig from './webpack.config.babel.js'
+import {libConfig, siteConfig} from './webpack.config.babel.js'
 import packageJson from './package.json';
 
 // CONSTANTS
@@ -125,8 +125,17 @@ gulp.task("jade", () => {
  * $ gulp webpack
  * =======================================================
  */
-gulp.task("webpack", (cb) => {
-  webpack(webpackConfig, (err, stats) => {
+gulp.task("webpack:site", (cb) => {
+  webpack(siteConfig, (err, stats) => {
+    if( err ) throw new $.util.PluginError("webpack", err);
+    $.util.log("[webpack]", stats.toString());
+    bs.reload();
+    cb();
+  })
+});
+
+gulp.task("webpack:lib", (cb) => {
+  webpack(libConfig, (err, stats) => {
     if( err ) throw new $.util.PluginError("webpack", err);
     $.util.log("[webpack]", stats.toString());
     bs.reload();
@@ -142,6 +151,7 @@ gulp.task("webpack", (cb) => {
  * =======================================================
  */
 gulp.task("uglify:lib", () => {
+  if (!isProduction) return
   return gulp.src(`${paths.lib.dest}/**/*.js`)
   .pipe($.uglify({preserveComments: "some"}))
   .pipe(gulp.dest(paths.lib.dest))
@@ -149,6 +159,7 @@ gulp.task("uglify:lib", () => {
 });
 
 gulp.task("uglify:site", () => {
+  if (!isProduction) return
   return gulp.src(`${paths.site.dest}/**/*.js`)
   .pipe($.uglify({preserveComments: "some"}))
   .pipe(gulp.dest(paths.site.dest))
@@ -200,7 +211,9 @@ gulp.task("sass", () => {
 gulp.task("build", (cb) => {
   runSequence(
     "clean",
-    ["webpack", "sass", "jade"],
+    "webpack:lib",
+    "webpack:site",
+    ["sass", "jade"],
     "uglify",
     cb
   );
@@ -223,9 +236,14 @@ gulp.task("watch", (cb) => {
       });
 
       // WEBPACK HMR did the job with browser sync
-      $.watch([`${paths.site.src}/js/**/*`, `${paths.lib.src}/**/*`], () => {
-        gulp.start("webpack");
+      $.watch(`${paths.site.src}/js/**/*`, () => {
+        gulp.start("webpack:site");
       });
+
+      $.watch(`${paths.lib.src}/**/*`, () => {
+        gulp.start("webpack:lib");
+      });
+
 
       $.watch(`${paths.site.src}/stylesheets/**/*`, () => {
         gulp.start("sass");
