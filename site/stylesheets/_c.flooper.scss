@@ -1,0 +1,54 @@
+.c-flooper {
+  display: flex;
+  flex-direction: column;
+  padding: 40px 0;
+  overflow: hidden;
+  background: #ececec;
+  padding: 2rem 0;
+}
+
+.c-flooper__row {
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  margin-bottom: 30px;
+}
+
+.c-flooper__block {
+  position: relative;
+  margin: 0 15px;
+  padding: 0 15px;
+  flex: 0 0 auto;
+  width: 136px;
+  height: 136px;
+  border-radius: 136px;
+  display: flex;
+  background: white;
+  align-items: center;
+  justify-content: center;
+
+  &:before{
+    content: " ";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top:0;
+    left: 0;
+    border-radius: 136px;
+    box-shadow: 0px 8px 24px rgba(0,0,0,0.12);
+  }
+
+  &:hover{
+    background-color: #222;
+    color: white;
+  }
+}
+
+.c-flooper__block--2x {
+  width: 304px;
+}
+
+.c-flooper__controls{
+  text-align: center;
+}
