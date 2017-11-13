@@ -94,3 +94,7 @@ myFlooper.init();
 ## Authors & Credits <br>
 Tomás Marques | https://github.com/tomasmcm | @tomasmcm<br>
 Renato de Leão | https://github.com/renatodeleao | @renatodeleao<br>
+
+Demo Images source:
+- https://www.pexels.com/photo/abbey-beatles-cc0-crossing-395714/
+- https://www.flickr.com/photos/oddsock/167157641
