@@ -3,14 +3,14 @@ import Flooper from '../../dist/Flooper.js';
 import {consoleColophon} from './consoleColophon';
 
 consoleColophon();
-var i = new Flooper();
-i.init();
+var demoFlooper = new Flooper();
+demoFlooper.init();
 
 document.querySelector(".js-flooper-pause").onclick = () => {
-  i.pause();
+  demoFlooper.pause();
   console.log("paused");
 };
 document.querySelector(".js-flooper-resume").onclick = () => {
-  i.resume();
+  demoFlooper.resume();
   console.log("resumed");
 };
