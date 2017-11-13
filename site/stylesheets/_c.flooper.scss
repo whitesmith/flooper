@@ -26,7 +26,7 @@
   padding: 0 15px;
   flex: 0 0 auto;
   width: 136px;
-  height: 136px;
+  height: 272px;
   border-radius: 136px;
   display: flex;
   background: white;
@@ -48,6 +48,25 @@
     background-color: #222;
     color: white;
   }
+
+  &[class*="--b"] {
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  &--b1{
+    background: url("../assets/1.png");
+  }
+  &--b2{
+    background: url("../assets/2.png");
+  }
+  &--b3{
+    background: url("../assets/3.png");
+  }
+  &--b4{
+    background: url("../assets/4.png");
+  }
 }
 
 .c-flooper__block--2x {
@@ -55,5 +74,7 @@
 }
 
 .c-flooper__controls{
+  margin-top: 5em;
+  margin-bottom: -5em;
   text-align: center;
 }
