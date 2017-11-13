@@ -3,8 +3,13 @@
   flex-direction: column;
   padding: 40px 0;
   overflow: hidden;
-  background: #ececec;
   padding: 2rem 0;
+  background-image: linear-gradient(rgba(#ececec,.5), rgba(#ececec,.5)), url("../assets/background.jpeg");
+  flex-grow: 1;
+  background-size: cover;
+  background-position: 50% 75%;
+  background-repeat: no-repeat;
+  justify-content: center;
 }
 
 .c-flooper__row {
