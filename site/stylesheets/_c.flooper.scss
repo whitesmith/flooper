@@ -32,6 +32,11 @@
   background: white;
   align-items: center;
   justify-content: center;
+  animation: float 3s ease-in-out infinite;
+
+  .paused & {
+    animation-play-state: paused;
+  }
 
   &:before{
     content: " ";
@@ -77,4 +82,17 @@
   margin-top: 5em;
   margin-bottom: -5em;
   text-align: center;
+}
+
+
+@keyframes float {
+	0% {
+		transform: translateY(0px);
+	}
+	50% {
+		transform: translateY(-10px);
+	}
+	100% {
+		transform: translateY(0px);
+	}
 }
