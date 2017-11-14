@@ -10,6 +10,11 @@
   background-position: 50% 75%;
   background-repeat: no-repeat;
   justify-content: center;
+
+  @media screen and (min-width:1024px) {
+    width: 50%;
+    margin-left: 25%;
+  }
 }
 
 .c-flooper__row {
