@@ -221,6 +221,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	      this.flooper.addEventListener('mouseenter', this.slowMotion, false);
 	      this.flooper.addEventListener('mouseleave', this.slowMotion, false);
 	    }
+	  }, {
+	    key: 'getState',
+	    value: function getState() {
+	      return {
+	        paused: this.paused,
+	        slowmotion: this.slowmotion
+	      };
+	    }
 	  }]);
 	
 	  return Flooper;

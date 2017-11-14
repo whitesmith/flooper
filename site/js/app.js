@@ -7,21 +7,17 @@ consoleColophon();
 var demoFlooper = new Flooper();
 demoFlooper.init();
 
-var paused = false;
-
 document.querySelector(".js-flooper-pause").onclick = () => {
+  if(!(demoFlooper.getState().paused)) toggleAnimation(document.querySelector(".js-flooper"), "paused");
+  
   demoFlooper.pause();
-
-  if(!paused) toggleAnimation(document.querySelector(".js-flooper"), "paused");
-  paused=true;
 
   console.log("paused");
 };
 document.querySelector(".js-flooper-resume").onclick = () => {
-  demoFlooper.resume();
+  if(demoFlooper.getState().paused) toggleAnimation(document.querySelector(".js-flooper"), "paused");
 
-  if(paused) toggleAnimation(document.querySelector(".js-flooper"), "paused");
-  paused=false;
+  demoFlooper.resume();
 
   console.log("resumed");
 };
