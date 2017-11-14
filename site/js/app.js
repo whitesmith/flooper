@@ -27,6 +27,7 @@ document.querySelector(".js-flooper-resume").onclick = () => {
 };
 
 // Add random delay to floating animation
-document.querySelectorAll(".js-flooper-item").forEach( (e) => {
-  e.style.animationDelay = Math.random()*3 + "s";
-});
+var elements = document.querySelectorAll(".js-flooper-item");
+for (var i = 0, len = elements.length; i < len; ++i) {
+  elements[i].style.animationDelay = Math.random()*3 + "s";
+}
