@@ -93,7 +93,7 @@ gulp.task("clean", (cb) => del([paths.lib.dest, paths.site.dest], cb));
  */
 gulp.task("copy-assets", () => {
   return gulp.src([`${paths.site.src}/assets/**/*`])
-  .pipe(gulp.dest(`${paths.site.dest}assets/`))
+  .pipe(gulp.dest(`${paths.site.dest}/assets/`))
   .pipe(bs.stream());
 });
 
@@ -213,7 +213,7 @@ gulp.task("build", (cb) => {
     "clean",
     "webpack:lib",
     "webpack:site",
-    ["sass", "jade"],
+    ["sass", "jade", "copy-assets"],
     "uglify",
     cb
   );
