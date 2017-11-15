@@ -241,7 +241,7 @@ gulp.task("watch", (cb) => {
       });
 
       $.watch(`${paths.lib.src}/**/*`, () => {
-        gulp.start("webpack:lib");
+        runSequence("webpack:lib", "webpack:site");
       });
 
 
