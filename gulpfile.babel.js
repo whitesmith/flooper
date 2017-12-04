@@ -19,8 +19,9 @@ import webpack from "webpack"
 // import webpackHotMiddleware from 'webpack-hot-middleware'
 import {libConfig, siteConfig} from './webpack.config.babel.js'
 import pkg from './package.json';
-const pkgName = pkg.name.split('/') === undefined ? pkg.name : pkg.name.split('/')[1]; // remove @org
+var pkgName = pkg.name.startsWith('@') ? pkg.name.split('/')[1] : pkg.name;
 
+console.log(pkgName);
 // CONSTANTS
 const paths = pkg.flooper.devPaths;
 let $ = gulpLoadPlugins(),
