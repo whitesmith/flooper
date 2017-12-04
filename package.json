@@ -19,9 +19,10 @@
     "Order",
     "Looper"
   ],
-  "author": [
-    "Tomás Marques | https://github.com/tomasmcm | @tomasmcm",
-    "Renato de Leão | https://github.com/renatodeleao | @renatodeleao"
+  "author": "Whitesmith <info@whitesmith.co> (http://whitesmith.co/)",
+  "contributors": [
+    "Tomás Marques <tomasmcm@whitesmith.co> (http://tomasmcm.design/)",
+    "Renato de Leão <renatodeleao@whitesmith.co> (http://renatodeleao.com/)"
   ],
   "license": "MIT",
   "bugs": {
