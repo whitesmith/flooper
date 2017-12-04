@@ -215,7 +215,8 @@ gulp.task("write-size-to-pkg", function(){
 gulp.task("size", (cb) => {
   runSequence(
     "size:lib",
-    "write-size-to-pkg"
+    "write-size-to-pkg",
+    cb
   )
 })
 /**
