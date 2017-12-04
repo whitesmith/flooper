@@ -55,6 +55,8 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**!
+	 * @preserve
+	 *
 	 * Flooper.js
 	 * @author Tomás Marques <@tomasmcm> <http://tomasmcm.design/>
 	 * @author Renato de Leão <@renatodeleao> <http://renatodeleao.com>
@@ -74,7 +76,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  _createClass(Flooper, null, [{
 	    key: 'getDataOptions',
 	
-	    /**
+	    /*
 	     * Get options from data-attribute with JSON like structure
 	     * https://gomakethings.com/setting-multiple-javascript-plugin-options-with-a-single-data-attribute/
 	     * @function
@@ -86,7 +88,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, {
 	    key: 'vendorTransformProp',
 	
-	    /**
+	    /*
 	     * Browser Vendor prop
 	     * @function
 	     * @static
@@ -106,7 +108,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    enumerable: true
 	  }]);
 	
-	  /**
+	  /*
 	   * Sticky Sidebar Constructor.
 	   * @constructor
 	   * @param {HTMLElement|String} flooper - The flooper element or flooper selector.

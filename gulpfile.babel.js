@@ -156,7 +156,7 @@ gulp.task("webpack:lib", (cb) => {
 gulp.task("uglify:lib", () => {
   if (!isProduction) return
   return gulp.src([`${paths.lib.dest}/${pkgName}.js`])
-  .pipe($.uglify({preserveComments: "some"}))
+  .pipe($.uglify())
   .pipe($.rename({suffix: ".min"}))
   .pipe($.size({title: $.util.colors.bgRed('[SIZE] library: ')}))
   .pipe(gulp.dest(paths.lib.dest))
@@ -166,7 +166,7 @@ gulp.task("uglify:lib", () => {
 gulp.task("uglify:site", () => {
   if (!isProduction) return
   return gulp.src(`${paths.site.dest}/**/*.js`)
-  .pipe($.uglify({preserveComments: "some"}))
+  .pipe($.uglify())
   .pipe(gulp.dest(paths.site.dest))
   .pipe(bs.stream());
 });
@@ -203,7 +203,6 @@ gulp.task("size:lib", function(){
             size: s.prettySize
           }
         }))
-        .pipe(gulp.dest('./'))
     })
 });
 
