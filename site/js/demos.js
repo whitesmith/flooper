@@ -1,4 +1,4 @@
-import Flooper from '../../dist/Flooper.js';
+import Flooper from '../../dist/flooper.js';
 
 import {
   beatlesDemo

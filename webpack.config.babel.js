@@ -4,25 +4,24 @@ import pkg from './package.json';
 
 // CONSTANTS
 const paths = pkg.flooper.devPaths;
-
 let isProduction = global.isProduction;
 let devtool = isProduction ? null : "#source-map";
-
 
 export const libConfig = {
 
   entry: {
     // "webpack/hot/dev-server",
     // "webpack-hot-middleware/client",
-    [`${paths.lib.dest}/Flooper`]: `${paths.lib.src}/index.js`, // library compiled
+    [`${paths.lib.dest}/flooper`]: `${paths.lib.src}/index.js`, // library compiled
   },
 
   output: {
     path: path.join(__dirname),
     // publicPath: '/dist/js',
     filename: "[name].js",
-    library: "Flooper",
-    libraryTarget: "umd"
+    library: "flooper",
+    libraryTarget: "umd",
+    umdNamedDefine: true
   },
 
   devtool,

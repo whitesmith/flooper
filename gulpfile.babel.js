@@ -19,6 +19,7 @@ import webpack from "webpack"
 // import webpackHotMiddleware from 'webpack-hot-middleware'
 import {libConfig, siteConfig} from './webpack.config.babel.js'
 import pkg from './package.json';
+const pkgName = pkg.name.split('/') === undefined ? pkg.name : pkg.name.split('/')[1]; // remove @org
 
 // CONSTANTS
 const paths = pkg.flooper.devPaths;
@@ -154,8 +155,9 @@ gulp.task("webpack:lib", (cb) => {
  */
 gulp.task("uglify:lib", () => {
   if (!isProduction) return
-  return gulp.src([`${paths.lib.dest}/**/*.js`, `!${paths.lib.dest}/**/*.js.map`])
+  return gulp.src([`${paths.lib.dest}/${pkgName}.js`])
   .pipe($.uglify({preserveComments: "some"}))
+  .pipe($.rename({suffix: ".min"}))
   .pipe($.size({title: $.util.colors.bgRed('[SIZE] library: ')}))
   .pipe(gulp.dest(paths.lib.dest))
   .pipe(bs.stream());
@@ -188,7 +190,7 @@ gulp.task("size:lib", function(){
   if (!isProduction) return
 
   const s = $.size();
-  return gulp.src(`${paths.lib.dest}/**/*.js`)
+  return gulp.src(`${paths.lib.dest}/${pkgName}.min.js`)
     .pipe(s)
     .pipe($.notify({
       onLast: true,
