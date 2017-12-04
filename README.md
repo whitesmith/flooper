@@ -1,5 +1,5 @@
-# Flooper.js
-Uses flex order attribute to loop a list of items instead of duplication or expensive multiItem position calculations. See it in action at [project page](http://whitesmith.github.io/Flooper.js/)
+# Flooper
+Uses flex order attribute to loop a list of items instead of duplication or expensive multiItem position calculations. See it in action at [project page](http://whitesmith.github.io/flooper/)
 
 ## Usage & Options
 
