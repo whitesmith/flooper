@@ -8,11 +8,7 @@
     "start:production": "gulp --env production",
     "build:production": "gulp build --env production",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy:add": "git add -f \"public/*\"",
-    "deploy:msg": "git commit -m \"Release with version $npm_package_version at $(date) \"",
-    "deploy:gh": "git push origin :gh-pages && git subtree push --prefix $npm_package_flooper_devPaths_site_destName origin gh-pages",
-    "deploy:reset": "git reset HEAD^ && git checkout -- dist/*",
-    "deploy:site": "npm run build:production && npm run deploy:add && npm run deploy:msg && npm run deploy:gh && npm run deploy:reset"
+    "deploy:site": "cd node_modules/gulp-gh-pages/ && npm install --save gift@0.10.1 && cd .. && cd .. && gulp deploy:site --env production"
   },
   "repository": {
     "type": "git",
@@ -79,18 +75,7 @@
         "destName": "public"
       }
     },
-    "devPaths": {
-      "lib": {
-        "src": "./lib",
-        "dest": "./dist"
-      },
-      "site": {
-        "src": "./site",
-        "dest": "./public",
-        "destName": "public"
-      }
-    },
     "browserSupport": "IE 10+, Modern Browsers",
-    "size": "8.16 kB"
+    "size": "8.19 kB"
   }
 }

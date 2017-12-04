@@ -156,7 +156,7 @@ gulp.task("uglify:lib", () => {
   if (!isProduction) return
   return gulp.src([`${paths.lib.dest}/**/*.js`, `!${paths.lib.dest}/**/*.js.map`])
   .pipe($.uglify({preserveComments: "some"}))
-  .pipe($.size({title: $.util.colors.bgRed('[SIZE] Images: ')}))
+  .pipe($.size({title: $.util.colors.bgRed('[SIZE] library: ')}))
   .pipe(gulp.dest(paths.lib.dest))
   .pipe(bs.stream());
 });
@@ -306,10 +306,9 @@ gulp.task("default", () => {
  */
 
 gulp.task('deploy:gh-pages', function() {
-  return gulp.src('./site/**')
+  return gulp.src(`${paths.site.dest}/**/*`)
     .pipe($.ghPages({
-      remoteUrl: "https://github.com/whitesmith/Flooper.js.git",
-      force: true
+      message: `Update ${pkg.version} [timestamp]`
     }));
 });
 
