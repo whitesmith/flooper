@@ -3,27 +3,43 @@ Uses flex order attribute to loop a list of items instead of duplication or expe
 
 ## Usage & Options
 
-#### HTML
+#### Install
+Old school include (exposes `flooper` global):
 
 ```HTML
+<script src="https://unpkg.com/flooper"></script>
+```
+Savage developers:
+```zsh
+
+npm install --save flooper
+```
+
+Then import it:
+```javascript
+import 'flooper' from 'flooper'; // or...
+const flooper = require('flooper');
+```
+
+#### HTML & CSS
+Don't be a bad boy and put js-hooks classes in your CSS files please.
+Required CSS for the plugin to work
+
+```HTML
+<!-- required hooks -->
 <div class="c-my-flooper js-flooper">
   ...
   <div class="c-my-flooper__el js-flooper-item"></div>
   ...
 </div>
 ```
-
-#### CSS
-Don't be a bad boy and put js-hooks classes in your CSS files please.
-Required CSS for the plugin to work:
-
 ```SCSS
-
+//[1] required
 .c-my-flooper{
-  position: !static; // anything but static
-  display: flex; 
-  flex-wrap: nowrap;
-  white-space: nowrap;
+  position: relative; // [1] anything but static
+  display: flex; // [1]
+  flex-wrap: nowrap; // [1]
+  white-space: nowrap; // [1]
 }
 
 .c-my-flopoper__el{
@@ -32,8 +48,8 @@ Required CSS for the plugin to work:
 ```
 #### Javascript
 ```javascript
-var instance = new Flooper();
-instance.init();
+var myFlooper = new flooper(); // assumes that you have a DOM el with '.js-flooper hooks' 
+myFlooper.init();
 // enjoy
 ```
 
@@ -70,7 +86,7 @@ After instanciate and init, these are the current methods available.
 
 ```javascript
 // define
-const myFlooper = new Flooper();
+const myFlooper = new flooper();
 myFlooper.init();
 
 ```
