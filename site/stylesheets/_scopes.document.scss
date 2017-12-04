@@ -1,0 +1,13 @@
+/*
+ * ANIMEJS SCOPES
+*/
+[data-animejs]{
+  will-change: opacity, transform;
+  visibility: hidden;
+}
+
+html.js[data-scope*="DOMLoaded--"]{
+  [data-animejs]{
+    visibility: visible;
+  }
+}

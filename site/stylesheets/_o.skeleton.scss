@@ -1,0 +1,21 @@
+.o-skeleton {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+  .o-skeleton__head,
+  .o-skeleton__feet{
+    flex: none;
+  }
+
+  .o-skeleton__body{
+    position: relative;
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }

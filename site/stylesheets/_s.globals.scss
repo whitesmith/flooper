@@ -1,0 +1,73 @@
+/*
+ * LAYOUT
+ *
+ * [1] - Using mappy breakpoints Awesome mixin
+ *       https://github.com/zellwk/mappy-breakpoints
+ */
+
+// SPACING & VERTICAL-RYTHYM
+$fl-pixel-grid: 8px;
+$fl-base-font-size: 16px;
+$fl-spacing-unit: $fl-pixel-grid; // alias
+$fl-px-grid-span: $fl-pixel-grid; // alias
+
+// BREAKPOINTS
+$fl-breakpoints-map: (
+   'xxs':  360px,
+   'xs':   480px,
+   's' :   600px,
+   'sm':   768px,
+   'md':   992px,
+   'mdl':  1024px,
+   'lg':   1280px,
+   'xl':   1440px,
+   'xxl':  1650px,
+   'hd':   1920px
+);
+$breakpoints: $fl-breakpoints-map; // [1]
+
+// LAYOUT GRID
+$fl-grid-columns: 10 !default;
+$fl-grid-gutter-map: (
+  null: $fl-pixel-grid,
+  xs:   $fl-pixel-grid*2,
+  s:    $fl-pixel-grid*3
+) !default;
+
+$fl-grid-breakpoints-list: ('xxs', 'xs', 's', 'sm', 'mdl', 'lg'); //a subset of $global-breakpoints;
+
+
+$fl-wrapper-map:(
+  null: 100%,
+  lg:   1024px,
+  xl:   1280px
+) !default;
+// IF RESPONSIVE UTILITY CLASSES USE COMMON SEPARATOR
+$fl-breakpoint-separator: \@; //escaped char
+
+/*
+ * COLORS
+ */
+$fl-black: #101010;
+$fl-gray:  #919191;
+
+
+/*
+ * TYPOGRAPHY
+ */
+
+$system-font: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+
+
+/*
+ * FOR INJECTED DEPENCENCIES
+ * Functions, grid, sizing utilities
+ */
+
+$global-base-font-size: $fl-base-font-size;
+$global-grid-breakpoints-list: $fl-grid-breakpoints-list;
+$global-grid-columns: $fl-grid-columns;
+$global-grid-gutter-map: $fl-grid-gutter-map;
+$global-breakpoint-separator: $fl-breakpoint-separator;
+
+

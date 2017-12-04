@@ -1,5 +1,10 @@
 {
-  "title": "Flooper.js",
-  "description": "Use flex order to create an infinite animated loop of items.",
-  "keywords": "gulp, babel, sass, jade, javaScript, flexbox"
+  "repo": "https://github.com/whitesmith/Flooper.js",
+  "whitesmith": {
+    "site": "https://www.whitesmith.co/",
+    "github": "https://github.com/whitesmith/",
+    "instagram": "https://instagram.com/whitesmithco",
+    "facebook": "https://facebook.com/whitesmithco",
+    "twitter": "https://twitter.com/whitesmithco"
+  }
 }

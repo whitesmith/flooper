@@ -18,10 +18,10 @@ import webpack from "webpack"
 // import webpackDevMiddleware from 'webpack-dev-middleware'
 // import webpackHotMiddleware from 'webpack-hot-middleware'
 import {libConfig, siteConfig} from './webpack.config.babel.js'
-import packageJson from './package.json';
+import pkg from './package.json';
 
 // CONSTANTS
-const paths = packageJson.devPaths;
+const paths = pkg.flooper.devPaths;
 let $ = gulpLoadPlugins(),
     bs = broswerSync.create();
 // Environment variables
@@ -111,7 +111,9 @@ gulp.task("jade", () => {
   ])
   .pipe($.plumber())
   .pipe($.data(() => {
-    return require(`${paths.site.src}/jade/config.json`);
+    var config = require(`${paths.site.src}/jade/config.json`);
+    var data = {...config, ...pkg } // config file and package.json
+    return data
   }))
   .pipe($.jade({pretty: true}))
   .pipe(gulp.dest(paths.site.dest))
@@ -152,8 +154,9 @@ gulp.task("webpack:lib", (cb) => {
  */
 gulp.task("uglify:lib", () => {
   if (!isProduction) return
-  return gulp.src(`${paths.lib.dest}/**/*.js`)
+  return gulp.src([`${paths.lib.dest}/**/*.js`, `!${paths.lib.dest}/**/*.js.map`])
   .pipe($.uglify({preserveComments: "some"}))
+  .pipe($.size({title: $.util.colors.bgRed('[SIZE] Images: ')}))
   .pipe(gulp.dest(paths.lib.dest))
   .pipe(bs.stream());
 });
@@ -175,6 +178,32 @@ gulp.task("uglify", (cb) => {
 });
 
 
+/**
+ * =======================================================
+ * $ gulp size
+ * write size to package.json
+ * =======================================================
+ */
+gulp.task("size:lib", function(){
+  if (!isProduction) return
+
+  const s = $.size();
+  return gulp.src(`${paths.lib.dest}/**/*.js`)
+    .pipe(s)
+    .pipe($.notify({
+      onLast: true,
+      message: () => `Total size ${s.prettySize}`
+    }))
+    .on('end', function(){
+      return gulp.src('./package.json')
+        .pipe($.jsonEditor({
+          flooper: {
+            size: s.prettySize
+          }
+        }))
+        .pipe(gulp.dest('./'))
+    })
+});
 
 /**
  * =======================================================
@@ -182,18 +211,17 @@ gulp.task("uglify", (cb) => {
  * =======================================================
  */
 gulp.task("sass", () => {
-  let params = {
-    outputStyle: isProduction ? "compressed" : "expanded"
-  };
-
   return gulp.src(`${paths.site.src}/stylesheets/**/*.scss`)
   .pipe($.plumber())
-  .pipe($.sass.sync(params).on("error", $.sass.logError))
+  .pipe($.sass({
+    includePaths: ['node_modules'],
+    outputStyle: isProduction ? "compressed" : "expanded"
+  }).on("error", $.sass.logError))
   .pipe($.autoprefixer({
     browsers: [
-      "last 4 versions",
-      "ie 9",
-      "iOS 6",
+      "last 3 versions",
+      "ie 10",
+      "iOS 8",
       "Android 4"
     ]
   }))
@@ -215,6 +243,7 @@ gulp.task("build", (cb) => {
     "webpack:site",
     ["sass", "jade", "copy-assets"],
     "uglify",
+    "size:lib",
     cb
   );
 });
@@ -237,7 +266,7 @@ gulp.task("watch", (cb) => {
 
       // WEBPACK HMR did the job with browser sync
       $.watch(`${paths.site.src}/js/**/*`, () => {
-        gulp.start("webpack:site");
+        runSequence("webpack:lib", "webpack:site");
       });
 
       $.watch(`${paths.lib.src}/**/*`, () => {
@@ -283,7 +312,6 @@ gulp.task('deploy:gh-pages', function() {
       force: true
     }));
 });
-
 
 
 // pass flag --env production when using

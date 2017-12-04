@@ -1,0 +1,48 @@
+.ws-banner {
+  position: relative;
+  background: #000;
+  color: #f0f0f0;
+  font-size: 0.875rem;
+  line-height: 1.4285
+}
+
+  .ws-banner__wrapper {
+    @include wrap;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 56px;
+
+  }
+
+  .ws-banner__block {
+    padding: 16px 16px 16px 0
+  }
+
+  .ws-banner__block:last-child {
+    padding-right: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .ws-banner__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: inline-flex;
+
+    li {
+      padding: 0 8px;
+      min-width: 24px
+    }
+    a {
+      font-size: 16px;
+      color: white;
+    }
+    svg {
+      fill: currentColor;
+      width: 1em;
+      height: 1em;
+    }
+  }

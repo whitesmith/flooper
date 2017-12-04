@@ -1,0 +1,55 @@
+/**
+ * A static version of a loopeed text
+ * Adjust according to font and sizelenght
+ * Yes this can probably be calculated by js
+ */
+.c-floopytext-wrapper{
+  width: 100%;
+  display: block;
+  position: relative;
+  overflow: hidden;
+  text-align: left; //avoid inheritance
+}
+
+.c-floopytext{
+  font-size: 11.5vw;
+  line-height: 1;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  position: relative;
+  display: inline-block;
+  text-align: center;
+
+  &:before,
+  &:after{
+    content: attr(title);
+    display: inline;
+    font-size: inherit;
+    opacity: 0.5;
+    position: absolute;
+  }
+
+  &:before{
+    left:0;
+    transform: translateX(-100%);
+  }
+
+  &:after{
+    right: 0;
+    transform: translateX(100%);
+  }
+}
+
+
+.c-floopytext--showcase{
+  font-size: 8.9vw;
+
+  &,
+  &:before,
+  &:after{
+    white-space: nowrap;
+  }
+}

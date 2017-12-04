@@ -1,0 +1,22 @@
+/*
+ * Layout buttons together
+ * Can override its styles.
+ */
+
+.c-button-group-wrap{
+  display: flex;
+  flex-direction: column;
+
+  & + .c-button-group-wrap{
+    margin-left: 2rem;
+  }
+}
+
+.c-button-group{
+  display: inline-flex;
+  align-items: center;
+
+  .c-button + .c-button {
+    margin-left: 0.5rem;
+  }
+}

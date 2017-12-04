@@ -1,20 +1,15 @@
+$default-block-size: 136px;
+.c-flooper-wrap{
+  position: relative;
+  display: inline-flex;
+  margin: 0 auto;
+}
+
 .c-flooper {
   display: flex;
-  flex-direction: column;
-  padding: 40px 0;
   overflow: hidden;
-  padding: 2rem 0;
-  background-image: linear-gradient(rgba(#ececec,.5), rgba(#ececec,.5)), url("../assets/background.jpeg");
   flex-grow: 1;
-  background-size: cover;
-  background-position: 50% 75%;
-  background-repeat: no-repeat;
   justify-content: center;
-
-  @media screen and (min-width:1024px) {
-    width: 50%;
-    margin-left: 25%;
-  }
 }
 
 .c-flooper__row {
@@ -22,52 +17,102 @@
   display: flex;
   flex-wrap: nowrap;
   white-space: nowrap;
-  margin-bottom: 30px;
 }
 
-.c-flooper__block {
-  position: relative;
-  margin: 0 15px;
-  padding: 0 15px;
-  flex: 0 0 auto;
-  width: 136px;
-  height: 272px;
-  border-radius: 68px;
-  display: flex;
-  background: white;
-  align-items: center;
+  .c-flooper__block {
+    position: relative;
+    flex: 0 0 auto;
+    display: flex;
+  }
+
+    .c-flooper__img {
+      position: absolute;
+      top:0;
+      left:0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+
+
+/*
+ * BEATLES DEMO
+ *------------------------------------------*/
+.c-flooper--marquee{
   justify-content: center;
-  animation: float 3s ease-in-out infinite;
-  background: transparent;
+}
 
-  .paused & {
-    animation-play-state: paused;
-  }
+/*
+ * BEATLES DEMO
+ *------------------------------------------*/
+.c-flooper-wrap--beatles{
+  flex: 1;
+  position: relative;
+  display: block;
+  overflow: hidden;
+  box-shadow: 0px 12px 42px 6px rgba(0,0,0,0.24);
+  border-radius: 3px;
 
-  &:hover{
-    background-color: rgba(#222,.5);
-    color: white;
+  &:before {
+    content: "";
+    display: block;
+    width: 100%;
+    padding-bottom: 100%; /* [1] */
   }
 }
-.c-flooper__img {
-  max-height: 100%;
-  width: auto;
+
+.c-flooper--beatles {
+  background-image: linear-gradient(rgba(#ececec,.5), rgba(#ececec,.5)), url("../assets/background.jpeg");
+  background-size: cover;
+  background-position: 50% 75%;
+  background-repeat: no-repeat;
+  padding: 2rem 0;
+  background-blend-mode: hue;
+
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 
-.c-flooper__block--2x {
-  width: 304px;
-}
+  .c-flooper__row{
+    flex: 1;
+    align-items: center;
+  }
 
-.c-flooper__controls{
-  margin-top: 5em;
-  margin-bottom: -5em;
-  text-align: center;
-}
+  .c-flooper__block{
+    padding: 0;
+    background: transparent;
+    width: calc(25% + 50px);
+    height: 75%;
+    animation: float 3s ease-in-out infinite;
 
+    .paused & {
+      animation-play-state: paused;
+    }
+
+    &:hover{
+      background-color: none;
+      color: white;
+    }
+  }
+
+  .c-flooper__img{
+    transform: scale(1.4);
+  }
+
+
+
+  // cover spine
+  .c-flooper__controls{
+
+    height: 100%;
+    width: 56px;
+    background: white;
+    left: 0px;
+  }
+}
 
 @keyframes float {
 	0% {
@@ -79,4 +124,104 @@
 	100% {
 		transform: translateY(0px);
 	}
+}
+
+
+/*
+ * DEFAULT DEMO
+ *------------------------------------------*/
+
+.c-flooper--demo{
+  //background: black;
+  padding: $fl-px-grid-span*4 0;
+  margin: $fl-px-grid-span*8 0;
+  color: blue;
+  overflow: visible;
+  justify-content: flex-start;
+  position: relative;
+  border: 1px dashed currentColor;
+
+  // labels
+  &:before,
+  .c-flooper__row:before{
+    content: attr(data-name);
+    display: inline-block;
+    color: currentColor;
+    position: absolute;
+    top: 0;
+    transform:translateY(-100%);
+    font-size: px-to-rem(14px);
+  }
+
+  &:after{
+    content: "bufferSize: 50px";
+    display: block;
+    height: 100%;
+    width: 50px;
+    left: -50px;
+    position: absolute;
+    top:0;
+    white-space: nowrap;
+    writing-mode: vertical-lr;
+    color: lightblue;
+    background-color: rgba(white, 0.1);
+    border: 1px dashed currentColor;
+  }
+
+
+  .c-flooper__row{
+    color: goldenrod;
+    border: 1px dashed currentColor;
+    padding: $fl-px-grid-span*4 0;
+  }
+
+
+  .c-flooper__block{
+    width: $default-block-size;
+    height: $default-block-size;
+    border-radius: $default-block-size;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.1s ease-out, color 0.1s ease-out;
+
+    background: transparent;
+    color: $fl-black;
+    border: 1px solid $fl-black;
+
+    margin: 0 $fl-px-grid-span*2;
+    padding: 0 $fl-px-grid-span*2;
+    margin: $fl-px-grid-span*2;
+
+    &:hover{
+      background: $fl-black;
+      color: white;
+    }
+
+    &:before{
+      //outline
+      content: " ";
+      display: block;
+      position: absolute;
+
+      top:-$fl-px-grid-span*2;
+      left: -$fl-px-grid-span*2; //margin
+      right: -$fl-px-grid-span*2; //magin;
+      bottom: -$fl-px-grid-span*2;
+      border: 1px dotted red;
+    }
+
+    &:after{
+      content:"Flooper " attr(data-flooper) "";
+      display: inline-block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateY(-175%);
+      color: red;
+      font-size: px-to-rem(12px);
+    }
+  }
+
+  // double sizing
+  .c-flooper__block--2x{width:$default-block-size*2; }
 }

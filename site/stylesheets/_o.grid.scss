@@ -1,0 +1,106 @@
+/*
+ * OBJECTS.GRID
+ * ----
+ *
+ *  HTML usage:
+ *  <div class="o-grid">
+ *      <div class="o-grid__item u-col-6@sm"></div>
+ *  </div>
+ *
+ *  CSS usage:
+ *  .your-el{
+ *    @include make-col(5); // spans to five col out of total grid coluns
+ *  }
+ *
+ *  requires:
+ *    @mappy-breakpoints
+ */
+
+@mixin make-grid-wrapper(){
+   position: relative;
+   display: flex;
+   flex: 0 1 auto;
+   flex-direction: row;
+   flex-wrap: wrap;
+   @each $breakpoint, $gutter in $global-grid-gutter-map{
+      @if $breakpoint == null {
+         margin-left: - (px-to-rem($gutter));
+      } @else {
+         @include mappy-bp($breakpoint){
+              margin-left: - (px-to-rem($gutter));
+         }
+      }
+   }
+}
+
+
+@mixin apply-grid-el-gutters(){
+  @each $breakpoint, $gutter in $global-grid-gutter-map{
+    @if $breakpoint == null {
+       padding-left: px-to-rem($gutter);
+    } @else {
+       @include mappy-bp($breakpoint){
+            padding-left: px-to-rem($gutter);
+       }
+    }
+  }
+}
+
+
+@mixin make-grid-el() {
+  position: relative;
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: auto;
+  max-width: 100%;
+
+  @each $breakpoint, $gutter in $global-grid-gutter-map{
+    @if $breakpoint == null {
+       padding-left: px-to-rem($gutter);
+    } @else {
+       @include mappy-bp($breakpoint){
+            padding-left: px-to-rem($gutter);
+       }
+    }
+  }
+}
+
+
+
+
+@mixin make-col($numberOfColumns: 'auto') {
+   @if ($numberOfColumns == 'auto' or $numberOfColumns == null){
+      flex-grow: 1;
+      flex-shrink: 0;
+      flex-basis: auto;
+      max-width: 100%;
+   }
+   @else {
+      flex: 0 0 percentage($numberOfColumns / $global-grid-columns);
+      width: percentage($numberOfColumns / $global-grid-columns);
+      max-width: percentage($numberOfColumns / $global-grid-columns);
+   }
+}
+
+/*
+ * CLASSES
+ */
+.o-grid {
+  @include make-grid-wrapper();
+}
+
+  .o-grid__el {
+    @include make-grid-el();
+    @include make-col();
+  }
+
+/*
+ * MODIFIERS
+ */
+.o-grid--flush {
+  margin-left: 0;
+
+  .o-grid__el { padding-left: 0}
+}
+
+

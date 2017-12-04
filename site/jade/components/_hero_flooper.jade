@@ -1,0 +1,15 @@
+div.c-flooper.c-flooper--marquee(data-scrollama-flooper data-animejs=`{
+  "hook": "flooper",
+  "duration": "",
+  "delay": "0.1s"
+}`)
+  .c-flooper__row(data-flooper="container" data-flooper-options=`{
+    "autoPlay": true,
+    "speed": 3,
+    "name": "Hero",
+    "flooperItemSelector": "[data-flooper='item']"
+  }`)
+    h1(class="c-floopytext" data-flooper="item") Flooper
+    span(class="c-floopytext" data-flooper="item") Flooper
+    span(class="c-floopytext" data-flooper="item") Flooper
+    span(class="c-floopytext" data-flooper="item") Flooper

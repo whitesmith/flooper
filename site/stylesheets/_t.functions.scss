@@ -1,0 +1,29 @@
+/*
+ * Helper by Hugo Giraudel
+ * Remove the unit of a length
+ *
+ * @param {Number} $number - Number to remove unit from
+ * @return {Number} - Unitless number
+ */
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+
+  @return $number;
+}
+
+/*
+   dependes on strip units functions
+*/
+@function px-to-rem($pixels: $global-base-font-size){
+   @return (strip-unit($pixels) / strip-unit($global-base-font-size) ) * 1rem;
+};
+
+
+/*
+   dependes on strip units functions
+*/
+@function px-to-pt($pixels: $global-base-font-size){
+   @return (strip-unit($pixels) * 0.75 ) * 1pt;
+};

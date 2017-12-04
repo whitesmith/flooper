@@ -1,0 +1,38 @@
+.c-showcase{
+  background: $fl-black;
+  color: white;
+  position: relative;
+
+  border-top-right-radius: 200px;
+  border-bottom-right-radius: 200px;
+
+  &:before,
+  &:after{
+    content: " ";
+    display: block;
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background-repeat: no-repeat;
+  }
+
+  &:before{
+    top:0;
+    left: 0;
+    transform: translateY(-100%);
+    background: radial-gradient(circle at 100% 0, transparent 200px, $fl-black 200px) top right;
+  }
+
+  &:after{
+    top:auto;
+    bottom: 0;
+    transform: translateY(100%);
+    background: radial-gradient(circle at 100% 100%, transparent 200px, $fl-black 200px) top left;
+  }
+}
+
+.c-demos__entry{
+  overflow: hidden;
+}
+
+

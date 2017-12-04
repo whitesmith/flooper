@@ -1,0 +1,101 @@
+
+
+
+.c-hero{
+  display: flex;
+  background: white;
+  color: $fl-black;
+   padding: 0 0 $fl-px-grid-span*3;
+  margin-bottom: $fl-px-grid-span*6;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 75vh;
+
+  //SCOPED ELEMENTS
+  .c-floopytext{
+    display: inline-flex;
+    align-items: center;
+    min-height: $fl-px-grid-span*20;
+
+    animation: fadeIn 0.3s forwards;
+
+    &:nth-child(odd){
+      color: rgba($fl-black,0.5);
+    }
+  }
+
+  //BREAKPOINTS
+  @include mappy-bp(max s){
+    .github-corner{display: none;}
+  }
+
+  @include mappy-bp(s){
+    padding: $fl-px-grid-span*3 0;
+
+    .c-floopytext{
+       min-height: $fl-px-grid-span*30;
+      margin-bottom: $fl-px-grid-span*6;
+    }
+  }
+}
+
+
+.c-hero__wrapper{
+  @include wrap;
+  display: flex;
+  flex-wrap: wrap;
+
+  @include mappy-bp(max s){
+    &:first-of-type{
+      order: 2;
+    }
+  }
+}
+
+
+.c-hero__block{
+  @include make-grid-el();
+
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  word-wrap: wrap;
+  margin-bottom: $fl-px-grid-span*3;
+
+  @include mappy-bp(s){
+    flex: 1 0 0.0000000001px;
+    min-width: 0.0000000001px;
+  }
+
+  @include mappy-bp(mdl){
+    &:last-child{
+      > * {
+        padding-left: 60px;
+      }
+    }
+  }
+}
+
+
+.c-hero__notes{
+  @include make-grid-wrapper();
+  width: 100%;
+
+
+  .c-hero__block{
+    @include make-grid-el();
+    @include make-col();
+
+    @include mappy-bp(s){
+      @include make-col(2);
+    }
+    margin-bottom: $fl-px-grid-span*4;
+  }
+
+  @include mappy-bp(s){
+    margin-bottom: $fl-px-grid-span*3;
+  }
+
+}
+
+

@@ -1,13 +1,52 @@
 .c-button {
   border: none;
   border-radius: 2px;
-  font-size: 1em;
   font-weight: 600;
   outline: none;
+  padding: 0 1rem;
+  font-size: 0.75rem;
+  height: 32px;
+  line-height: 32px;
+  display: inline-block;
+  user-select: none;// disbale text selection
 }
 
 .c-button--primary {
   background: #222;
   color: #ececec;
-  margin: 0.05em 0.2em;
+
+  &:hover{
+    background: rgba(#222,0.9);
+  }
 }
+
+
+.c-button--primary-o{
+  box-shadow: inset 0px 0px 0px 2px $fl-black;
+  color: $fl-black;
+
+  &:hover{
+    background: rgba(#222,0.9);
+    color: white;
+  }
+}
+
+
+.c-button--ghost{
+  background: #f0f0f0;
+  color: #222;
+
+  &:hover{
+    background: #999;
+  }
+}
+
+
+
+.c-button--cta{
+  height: 48px;
+  line-height: 48px;
+  font-size: px-to-rem(14px);
+  font-weight: 700;
+}
+

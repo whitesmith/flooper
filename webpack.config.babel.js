@@ -1,9 +1,9 @@
 import path from "path"
 // import webpack from "webpack"
-import packageJson from './package.json';
+import pkg from './package.json';
 
 // CONSTANTS
-const paths = packageJson.devPaths;
+const paths = pkg.flooper.devPaths;
 
 let isProduction = global.isProduction;
 let devtool = isProduction ? null : "#source-map";

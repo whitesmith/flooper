@@ -1,0 +1,27 @@
+div.c-player.js-flooper-player
+  div.c-player__wrap
+    div.c-player__block
+      div.c-player__selectbox.js-player-selectbox-holder
+        label.c-player__label Select Flooper:
+    div.c-player__block
+      div.c-player__state.c-player__label Initialised:
+        b.js-flooper-state-init loading...
+      div.c-player__state.c-player__label Play State:
+        b.js-flooper-state-play loading...
+      div.c-player__state.c-player__label SlowMotion:
+        b.js-flooper-state-slowmotion loading...
+      div.c-player__state.c-player__label Speed:
+        b.js-flooper-state-speed loading...
+    div.c-player__block
+      div.c-player__controls
+        div.c-button-group-wrap
+          div.c-player__label Binary Controls
+          div.c-button-group.js-flooper-binary-controls(role = "group")
+            button.c-button.c-button--primary.js-flooper-pause Pause
+            button.c-button.c-button--primary.js-flooper-play Play
+        div.c-button-group-wrap
+          div.c-player__label Filter Controls
+          div.c-button-group.js-flooper-filter-controls(role = "group")
+            button.c-button.c-button--ghost.js-flooper-slowmotion Slowmotion
+
+

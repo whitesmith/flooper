@@ -1,0 +1,13 @@
+section#how.o-section.c-how-it-works.u-overflow-hidden(data-scrollama-step="how" data-animejs-how-timeline)
+  .o-wrap
+    .o-grid(data-flout="end-- start@sm-- middle--")
+      div(class="o-grid__el u-col-7@sm u-col-6@mdl u-push-col-1@mdl")
+        div.c-typeset.c-typeset--mega.c-typeset--long-bodytext(data-animejs=`{hook: "hiBlock"}`)
+          h2.c-typeset__heading !magic
+          p(class="c-typeset__body-text u-push-col-1@mdl") Although it looked like it at the beginning. Instead of calculating the current position of every single item in the loop, <code>flooper</code> just cares about the two first items in the row. If the first has crossed its parent's border completely and the next hits the <code>bufferSize</code>, the flex order of the first item is increased making it jump to the end of the line. <br> Yep that's the trick ¯\_(ツ)_/¯
+      div(class="u-col-6 u-col-1@mdl u-push-col-1@mdl")
+        div.c-typeset.c-typeset--hint.u-text-right(data-animejs=`{hook: "hiBlock"}`)
+          h6.c-typeset__label Hint
+          p.c-typeset__body-text You can use the bottom bar player to control all Flooper instances of this page.
+      div(data-animejs=`{hook: "flooperDemo", animation: "sideInFromBottom"}`)
+        include ./_flooper_demo

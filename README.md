@@ -74,7 +74,7 @@ var instance = new Flooper({
 });
 ``` 
 
-#### Methods
+#### Methods & Callbacks
 After instanciate and init, these are the current methods available.
 
 ```javascript
@@ -88,13 +88,25 @@ myFlooper.init();
 | -------------------------| ------------------                    
 | `myFlooper.pause()`      | Pauses the flooper looping animation             
 | `myFlooper.play()`       | Resumes animation if paused                    
-| `myFlooper.slowMotion()` | Reduces speed to half. Currently default behaviour on mouseHover, but soon to be optional            
+| `myFlooper.slowMotion()` | Reduces speed to half. Currently default behaviour on mouseHover, but soon to be optional   
+
+| callback                 | Description                           
+| -------------------------| ------------------                    
+| `myFlooper.onFloop()`    | Each time an element order is changed   
+| `myFlooper.onStart()`     | when initialised           
+| `myFlooper.onPlay()`     | Self describing 
+| `myFlooper.onPause()` | Self describing 
+| `myFlooper.onSlowmotion()` | Self describing 
 
 
 ## Authors & Credits <br>
 Tomás Marques | https://github.com/tomasmcm | @tomasmcm<br>
 Renato de Leão | https://github.com/renatodeleao | @renatodeleao<br>
 
-Demo Images source:
+##### Demo Images source:
 - https://www.pexels.com/photo/abbey-beatles-cc0-crossing-395714/
 - https://www.flickr.com/photos/oddsock/167157641
+
+##### Demo Animations powered by the awesome libs
+- [Anime.js][http://animejs.com/] by [Julian Garnier](julianarnier.com)
+- [Scrollama][https://github.com/russellgoldenberg/scrollama/] by Russell Goldenberg

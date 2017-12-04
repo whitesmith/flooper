@@ -1,0 +1,155 @@
+/*
+BASE.RESET
+----
+
+Based on inuit.css
+
+A very simple, and opionated, reset
+that sits on top of Normalize.css.
+==================================================== */
+
+body,
+h1, h2, h3, h4, h5, h6,
+blockquote, pre,
+dl, dd, ol, ul,
+fieldset, legend,
+figure,
+hr {
+  margin:  0;
+  padding: 0;
+}
+
+@for $i from 1 through 6 {
+  h#{$i} { margin-top: 0 }
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: $fl-px-grid-span*3;
+}
+
+/**
+* Remove trailing margins from nested lists.
+*/
+li > {
+
+  ul,
+  ol {
+    margin-bottom: 0;
+  }
+
+}
+
+
+/**
+* Remove default table spacing.
+*/
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+
+
+
+
+/* Links */
+a,
+a:hover,
+a:visited {
+  color: inherit;
+}
+
+a,
+a:visited{
+  text-decoration: none;
+}
+
+a:hover{
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+
+
+/*
+TABLE
+----
+
+Ensure tables fill up as much space as possible.
+*/
+table {
+  width: 100%;
+}
+
+
+/*
+IMAGES
+----
+
+From inuit.css
+1. Fluid images for responsive purposes.
+2. Offset `alt` text from surrounding copy.
+3. Setting `vertical-align` removes the whitespace that appears under `img`
+elements when they are dropped into a page as-is. Safer alternative to
+using `display: block;`.
+*/
+img {
+  max-width: 100%; /* [1] */
+  font-style: italic; /* [2] */
+  vertical-align: middle; /* [3] */
+
+// visually hide alt text
+text-indent: 100%;
+white-space: nowrap;
+overflow: hidden;
+}
+
+
+/**
+* 1. If a `width` and/or `height` attribute have been explicitly defined, let’s
+*    not make the image fluid.
+*/
+img[width], /* [1] */
+img[height] {  /* [1] */
+  max-width: none;
+}
+
+
+hr{
+  margin: 0 auto;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.18;
+  padding: $fl-px-grid-span 0px;
+  box-sizing: border-box;
+}
+
+/*
+ * Remove spinner buttons from number inputs
+ * 1. Chrome & Safari
+ *2. Mozilla
+*/
+
+/* 1 */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* 2 */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+textarea {
+  font-family: inherit;
+}
+
+html [type="button"]{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}

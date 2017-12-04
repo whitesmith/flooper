@@ -1,0 +1,27 @@
+div(class="c-hero__notes" data-animejs=`{
+  "hook": "notes"
+}`)
+  // data from package json
+  div.c-hero__block(data-animejs)
+    .c-typeset.c-typeset--note
+      .c-typeset__label Current Version
+      .c-typeset__body-text #{version}
+  div.c-hero__block(data-animejs)
+    .c-typeset.c-typeset--note
+      .c-typeset__label Browser Support
+      .c-typeset__body-text #{flooper.browserSupport}
+  div.c-hero__block(data-animejs)
+    .c-typeset.c-typeset--note
+      .c-typeset__label Size
+      .c-typeset__body-text #{flooper.size}
+  div.c-hero__block(data-animejs)
+    .c-typeset.c-typeset--note
+      .c-typeset__label Stats
+      .c-typeset__body-text
+        span Stars (<b class="js-gh-stars">...</b>)
+  div.c-hero__block(data-animejs)
+    .c-typeset.c-typeset--note
+      .c-typeset__label Links
+      .c-typeset__body-text
+        a(href="#{homepage}" target="_blank") Docs <br>
+        a(href="#{bugs}" target="_blank") Issues <br>

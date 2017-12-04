@@ -1,0 +1,118 @@
+/**
+ * TYPESET BLOCKS
+ * Styles for text blots
+ */
+
+.c-typeset{
+  position: relative;
+}
+
+
+.c-typeset--mega{
+  .c-typeset__heading{
+    @include fluid-type(32px, 108px, 280px, 1024px);
+    margin-bottom: $fl-px-grid-span*3;
+    letter-spacing: -0.015em;
+    line-height: 1;
+  }
+
+  .c-typeset__subheading{
+    font-size: px-to-rem(20px);
+    margin-bottom: $fl-px-grid-span*2;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  .c-typeset__emphasis-text{
+    font-size: px-to-rem(18px);
+    margin-bottom: $fl-px-grid-span*2;
+    font-weight: 500;
+    line-height: 1.6;
+  }
+
+  .c-typeset__body-text{
+    font-size: 0.875rem;
+  }
+
+  code{
+    color: black;
+  }
+
+  @include mappy-bp(sm){
+    .c-typeset__subheading { font-size: px-to-rem(24px) }
+    .c-typeset__body-text  { font-size: 1rem; }
+  }
+}
+
+/*
+ * Notes modifier
+ */
+.c-typeset--note{
+  &:before{
+    content: " ";
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: currentColor;
+    margin-bottom: $fl-px-grid-span - 1px;
+  }
+
+  font-size: 0.75rem;
+
+  .c-typeset__label{
+    color: $fl-gray;
+  }
+  .c-typeset__body-text{
+    font-weight: 700;
+  }
+}
+
+
+
+//
+.c-typeset--long-bodytext{
+
+  @include mappy-bp(xxs){
+    .c-typeset__body-text{
+      columns: 2;
+      column-gap: $fl-px-grid-span*2;
+    }
+  }
+}
+
+
+/*
+ * Hints/sidenotes
+ */
+.c-typeset--hint{
+  position: relative;
+
+  .c-typeset__label{
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .c-typeset__body-text{
+    color: currentColor;
+    opacity: 0.6;
+    font-size: px-to-rem(12px)
+  }
+
+  //CONTEXT MODIFIERS
+  &[class*="u-text-right"]{
+    &:before{
+      content: " ";
+      display: block;
+      height: 100%;
+      width: 1px;
+      background: currentColor;
+      position: absolute;
+      right: -16px;
+      opacity: 0.12;
+    }
+  }
+  // RESPONSIVE
+  @include mappy-bp(mdl){
+    .c-typeset__body-text { font-size: px-to-rem(14px) }
+  }
+}

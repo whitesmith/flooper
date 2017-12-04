@@ -1,0 +1,186 @@
+/*
+   Flout.
+   ----
+
+   [HIGHLY EXPERIEMENTAL]
+   Put any parent/childrend divs on flexbox steroids;
+
+   Why the scope and not modifier classes?
+   Sincerly I don't know.
+
+   Still haven't find a better way to give the flexibility and order independence
+   of the data attributes. Also some styles are scoped so that the [data-flex-item]
+   isn't required. But this could be changed
+
+   By default, reponsive breakpoints are based on the selected grid breakpoints
+
+* ========================================================================== */
+
+$s-flout-breakpoints-list: $global-grid-breakpoints-list !default;
+/* Flex container */
+[data-flout]{
+   display: flex;
+   flex-wrap: wrap; //beacuse those will be the most common cases
+}
+
+
+/* Flow
+========================================================================== */
+[data-flout*="expand--"]       { width: 100% }
+[data-flout*="auto--"]         { width: auto }
+[data-flout*="nowrap--"]       { flex-wrap: nowrap;}
+[data-flout*="wrap-reverse--"] { flex-wrap: wrap-reverse;}
+[data-flout*="row--"]          { flex-direction: row; }
+[data-flout*="row-reverse--"]  { flex-direction: row-reverse; }
+[data-flout*="col--"]          { flex-direction: column; }
+[data-flout*="col-reverse"]    { flex-direction: column-reverse; }
+[data-flout*="inline--"]       { display: inline-flex; }
+
+@each $breakpoint in $s-flout-breakpoints-list{
+  @include mappy-bp($breakpoint){
+    [data-flout*="expand\@#{$breakpoint}--"]       { width: 100% }
+    [data-flout*="auto\@#{$breakpoint}--"]         { width: auto}
+    [data-flout*="nowrap\@#{$breakpoint}--"]       { flex-wrap: nowrap;}
+    [data-flout*="wrap-reverse\@#{$breakpoint}--"] { flex-wrap: wrap-reverse;}
+    [data-flout*="row\@#{$breakpoint}--"]          { flex-direction: row; }
+    [data-flout*="row-reverse\@#{$breakpoint}--"]  { flex-direction: row-reverse; }
+    [data-flout*="col\@#{$breakpoint}--"]          { flex-direction: column; }
+    [data-flout*="col-reverse\@#{$breakpoint}--"]  { flex-direction: column-reverse; }
+    [data-flout*="inline\@#{$breakpoint}--"]       { display: inline-flex; }
+  }
+}
+
+
+
+/* Vertical alignment
+========================================================================== */
+[data-flout*="top--"] { align-items: flex-start; }
+[data-flout*="middle--"] { align-items: center; }
+[data-flout*="bottom--"] { align-items: flex-end; }
+[data-flout*="baseline--"] { align-items: baseline; }
+
+@each $breakpoint in $s-flout-breakpoints-list{
+   @include mappy-bp($breakpoint){
+      [data-flout*="top\@#{$breakpoint}--"] { align-items: flex-start; }
+      [data-flout*="middle\@#{$breakpoint}--"] { align-items: center; }
+      [data-flout*="bottom\@#{$breakpoint}--"] { align-items: flex-end; }
+      [data-flout*="baseline\@#{$breakpoint}--"] { align-items: baseline; }
+   }
+}
+
+
+
+/* Multi-row alignment
+========================================================================== */
+[data-flout*="content-start--"]   { align-content: flex-start; }
+[data-flout*="content-center--"]  { align-content: center; }
+[data-flout*="content-end--"]     { align-content: flex-end; }
+[data-flout*="content-around--"]  { align-content: space-around; }
+[data-flout*="content-between--"] { align-content: space-between; }
+
+@each $breakpoint in $s-flout-breakpoints-list{
+   @include mappy-bp($breakpoint){
+      [data-flout*="content-start\@#{$breakpoint}--"]   { align-content: flex-start; }
+      [data-flout*="content-center\@#{$breakpoint}--"]  { align-content: center; }
+      [data-flout*="content-end\@#{$breakpoint}--"]     { align-content: flex-end; }
+      [data-flout*="content-around\@#{$breakpoint}--"]  { align-content: space-around; }
+      [data-flout*="content-between\@#{$breakpoint}--"] { align-content: space-between; }
+   }
+}
+
+
+
+
+/* Horizontal alignment
+========================================================================== */
+[data-flout*="start--"] { justify-content: flex-start; }
+[data-flout*="center--"] { justify-content: center; }
+[data-flout*="end--"] { justify-content: flex-end; }
+[data-flout*="around--"] { justify-content: space-around; }
+[data-flout*="between--"] { justify-content: space-between; }
+
+@each $breakpoint in $s-flout-breakpoints-list{
+   @include mappy-bp($breakpoint){
+      [data-flout*="start\@#{$breakpoint}--"] { justify-content: flex-start; }
+      [data-flout*="center\@#{$breakpoint}--"] { justify-content: center; }
+      [data-flout*="end\@#{$breakpoint}--"] { justify-content: flex-end; }
+      [data-flout*="around\@#{$breakpoint}--"] { justify-content: space-around; }
+      [data-flout*="between\@#{$breakpoint}--"] { justify-content: space-between; }
+   }
+}
+
+
+
+/* Layout items
+========================================================================== */
+
+[data-flitem="auto--"]{ width: auto; flex: 0 0 auto;}
+// ORDER
+[data-flitem*="first--"] { order: -1; }
+[data-flitem*="last--"] { order: 9999 }
+// Self vertical-alignement
+[data-flitem*="top--"] { align-self: flex-start; }
+[data-flitem*="middle--"] { align-self: center; }
+[data-flitem*="bottom--"] { align-self: flex-end; }
+[data-flitem*="baseline--"] { align-self: baseline; }
+// GROW & SHRINK
+[data-flitem*="grow--"]    { flex-grow: 1    }
+[data-flitem*="shrink--"]  { flex-shrink: 1  }
+[data-flitem*="!grow--"]   { flex-grow: 0    }
+[data-flitem*="!shrink--"] { flex-shrink: 0  }
+
+[data-flitem*="expand--"]  { flex: 1 0 0.000000000001px; }
+[data-flitem*="expand-auto--"]  { flex: 1 0 auto; }
+[data-flitem*="expand-break--"]  { flex: 1 0 100%; }
+[data-flitem*="none--"]  { flex: none;}
+/*
+   when in column direction ie and safari do not honor content height
+   Safari 7.1+ and IE-10-11
+
+   https://github.com/philipwalton/flexbugs/issues/58
+*/
+_:-ms-input-placeholder, :root [data-flout*="col"] [data-flitem*="expand--"]             { flex: 1 0 0.000000000001px; }
+_:-ms-input-placeholder, :root [data-flout*="col"][data-flitem*="expand--"]              { flex: 1 0 0.000000000001px; }
+_::-webkit-full-page-media, _:future, :root [data-flout*="col"][data-flitem*="expand--"] { flex: 1 0 0.000000000001px; }
+_::-webkit-full-page-media, _:future, :root [data-flout*="col"][data-flitem*="expand--"] { flex: 1 0 0.000000000001px; }
+
+// Self relative alginment
+[data-flitem*="shy-left--"]  { margin-left: auto; }
+[data-flitem*="shy-right--"] { margin-right: auto; }
+
+@each $breakpoint in $s-flout-breakpoints-list{
+   @include mappy-bp($breakpoint){
+      [data-flitem*="auto\@#{$breakpoint}--"]        { width: auto; flex: 0 0 auto; }
+      [data-flitem*="first\@#{$breakpoint}--"]       { order: -1; }
+      [data-flitem*="last\@#{$breakpoint}--"]        { order: 9999 }
+      [data-flitem*="top\@#{$breakpoint}--"]         { align-self: flex-start; }
+      [data-flitem*="middle\@#{$breakpoint}--"]      { align-self: center; }
+      [data-flitem*="bottom\@#{$breakpoint}--"]      { align-self: flex-end; }
+      [data-flitem*="baseline\@#{$breakpoint}--"]    { align-self: baseline; }
+      [data-flitem*="grow\@#{$breakpoint}--"]        { flex-grow: 1; }
+      [data-flitem*="shrink\@#{$breakpoint}--"]      { flex-shrink: 1; }
+      [data-flitem*="!grow\@#{$breakpoint}--"]     { flex-grow: 0    }
+      [data-flitem*="!shrink\@#{$breakpoint}--"]   { flex-shrink: 0  }
+      [data-flitem*="expand\@#{$breakpoint}--"]     { flex: 1 0 0.000000000001px; }
+      [data-flitem*="expand-auto\@#{$breakpoint}--"] { flex: 1 0 auto; }
+      [data-flitem*="expand-break\@#{$breakpoint}--"]{ flex: 1 0 100%}
+      [data-flitem*="none\@#{$breakpoint}--"]        { flex: none;}
+      [data-flitem*="shy-left\@#{$breakpoint}--"]    { margin-left: auto; }
+      [data-flitem*="shy-right\@#{$breakpoint}--"]   { margin-right: auto; }
+      _:-ms-input-placeholder, :root [data-flout*="col"] [data-flitem*="expand\@#{$breakpoint}--"]             { flex: 1 0 0.000000000001px; }
+      _:-ms-input-placeholder, :root [data-flout*="col"][data-flitem*="expand\@#{$breakpoint}--"]              { flex: 1 0 0.000000000001px; }
+      _::-webkit-full-page-media, _:future, :root [data-flout*="col"][data-flitem*="expand\@#{$breakpoint}--"] { flex: 1 0 0.000000000001px; }
+      _::-webkit-full-page-media, _:future, :root [data-flout*="col"][data-flitem*="expand\@#{$breakpoint}--"] { flex: 1 0 0.000000000001px; }
+   }
+}
+
+
+// Make eaqual height items
+[data-flout*="match-height--"]{
+   align-items: inherit; //reset component current alignment
+
+   > * {
+      display: flex;
+      flex-direction: column;
+   }
+}

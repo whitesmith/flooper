@@ -1,0 +1,25 @@
+header.c-hero(data-animejs-hero-timeline data-animejs)
+  include ../icons/_github_ribbon
+  div.c-hero__wrapper
+    include _hero_stats
+  include _hero_flooper
+  div.c-hero__wrapper
+    div.o-grid(data-flout="middle--" data-animejs-copy)
+      div(class="o-grid__el u-col-4@s c-typeset c-typeset--mega" data-animejs=`{
+        "hook": "typesetBlock",
+        "name": "slideInFromBottom",
+        "delay": "0.3s"
+        }`)
+        h2.c-typeset__subheading <code>Flooper.js</code> is a lightweight JavaScript plugin that uses the flexbox order property to infinite loop a list of items, hence the name.
+      div(class="o-grid__el u-col-6@s" data-flout="center@sm--"  data-animejs=`{
+        "hook": "typesetBlock",
+        "name": "slideInFromBottom",
+        "delay": "0.5s"
+        }`)
+        div.c-button-group.u-mb-3x
+            a.c-button.c-button--primary-o.c-button--cta(href="#{repo}") Documentation
+            a.c-button(href="#how") How it works
+            a.c-button(href="#showcase") Showcase
+
+
+
