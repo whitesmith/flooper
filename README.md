@@ -23,7 +23,9 @@ const flooper = require('flooper');
 
 #### HTML & CSS
 Don't be a bad boy and put js-hooks classes in your CSS files please.
-Required CSS for the plugin to work
+This is the required and minimal HTML and CSS for the plugin to work.  
+
+<small>Note: your classNames and jsHooks can be different</small>
 
 ```HTML
 <!-- required hooks -->
@@ -32,6 +34,7 @@ Required CSS for the plugin to work
   <div class="c-my-flooper__el js-flooper-item"></div>
   ...
 </div>
+
 ```
 ```SCSS
 //[1] required
@@ -42,36 +45,52 @@ Required CSS for the plugin to work
   white-space: nowrap; // [1]
 }
 
-.c-my-flopoper__el{
+.c-my-flooper__el{
   //go wild;
 }
 ```
 #### Javascript
 ```javascript
-var myFlooper = new flooper(); // assumes that you have a DOM el with '.js-flooper hooks' 
+/**
+ * @function flooper
+ *
+ * @param {String|HTMLElement} flooperElement - flooper container, defaults to '.js-flooper'
+ * @param {Object} [options] - containing the props described here at #options-and-defaults
+ */
+
+let myFlooper = new flooper('.js-flooper'); // you can ommit paramenter if used 'js-flooper' in HTML 
 myFlooper.init();
 // enjoy
 ```
 
-#### Options & defaults
+
+#### Options and defaults
 ```javascript
 /**
- * @param {string} [flooper='.js-flooper']  - flooper classname hook
- * @param {string} [flooperItem='.js-flooper-item'] - each item classname hook
- * @param {number} [bufferSize=10] - amount of pixels after block as past left side
- * @param {number} [speed=1] - amount of pixels container element should move per call.
- * @param {function} onFloop - described next section
- * @param {function} onStart - described next section
- * @param {function} onPause - described next section
- * @param {function} onPlay - described next section
- * @param {function} onSlowmotion - described next section
+ * @param {Object} options
+ *
+ * @param {bool}   [options.autoPlay=true] - flooper starts playing at initialisation
+ * @param {string} [options.flooperItemSelector = '.js-flooper-item'] - Flooper children loopable items
+ * @param {number} [options.bufferSize = 10] - amount of pixels after block as past left side
+ * @param {number} [options.speed = 1] - amount of pixels container element should move per call.
+ * @param {String} [options.name] = 'flooperInstance' - Prefix to build unique id
+ *
+ * @callback onFloop - When an element of a flooper is looped
+ * @param {HTMLElment} flooperItem 
+ * @param {Number} CurrentIndex 
+ *
+ * @callback onStart - described next section
+ * @callback onPause - described next section
+ * @callback onPlay - described next section
+ * @callback onSlowmotion - described next section
  */
 
 // defaults
-var instance = new Flooper({
-  flooper: '.js-flooper', // string class selector
-  flooperItem: '.js-flooper-item', // string class selector
+let instance = new Flooper('.js-flooper', {
+  autoPlay: true, // 
+  flooperItemSelector: '.js-flooper-item', // string class selector
   bufferSize: 10,
+  name: `flooperInstance`, 
   speed: 1,
   onFloop: () => {}, //noop
   onStart: () => {}, //noop
@@ -80,6 +99,26 @@ var instance = new Flooper({
   onSlowmotion: () => {}, //noop
 });
 ``` 
+
+##### Usage via data-attributes
+You can specifiy options via `data-flooper-options` attribute and using valid JSON notation
+```HTML
+<!-- back ticks used to allow \n in preprocessors -->
+<div class="c-my-flooper js-flooper-with-data-options"  data-flooper-options=`{
+    "autoplay": false,
+    "speed": 2,
+  }`>
+  ...
+  <div class="c-my-flooper__el js-flooper-item"></div>
+  ...
+</div>
+```
+```javascript
+const myFlooper = new flooper('js-flooper-with-data-options');
+myFlooper.init(); 
+// this flooper will have speed: 2 and will not autoPlay
+```
+
 
 #### Methods & Callbacks
 After instanciate and init, these are the current methods available.
@@ -104,8 +143,72 @@ myFlooper.init();
 | `myFlooper.onStart()`     | when initialised           
 | `myFlooper.onPlay()`     | Self describing 
 | `myFlooper.onPause()` | Self describing 
-| `myFlooper.onSlowmotion()` | Self describing 
+| `myFlooper.onSlowmotion()` | Self describing  
 
+
+<br>
+
+#### Multiple floopers on the same page
+```HTML
+
+<!-- 1-->
+<div data-flooper data-flooper-options=`{
+  "flooperItemSelector": "[data-flooper-item]", 
+  "name": "first"
+}`>
+  <div data-flooper-item>1</div>
+  ...
+</div>
+
+
+<!-- 2 -->
+<div data-flooper data-flooper-options=`{
+  "flooperItemSelector": "[data-flooper-item]", 
+  "name": "second"
+}`>
+  <div data-flooper-item>1</div>
+  ...
+</div>
+
+<!-- 3 -->
+<div data-flooper data-flooper-options=`{
+  "flooperItemSelector": "[data-flooper-item]", 
+  "name": "third"
+}`>
+  <div data-flooper-item>1</div>
+  ...
+</div>
+```
+```javascript
+(function(){
+  var $floopers = document.querySelectorAll('[data-flooper]');
+
+  $floopers.forEach(function(floop, i){
+    flooperInstances[i] = new flooper(floop);
+  });
+})();
+```
+
+##### If you need access to a specific istance
+```javascript
+
+(function initAllThaFloopers(){
+  // save a global reference
+  window.flooperInstances = [];
+  var $floopers = document.querySelectorAll('[data-flooper]');
+
+  $floopers.forEach(function(floop, i){
+    flooperInstances[i] = new flooper(floop);
+  });
+})();  
+
+...
+// later that day somewhere else
+var secondFlooper = flooperInstances.find(inst => inst.uid.startsWith('second') === true); // or...
+var secondFlooper = flooperInstances.find(inst => inst.options.name('second') === true);
+
+secondFlooper.pause();
+```
 
 ## Developing
 * Clone the repo
