@@ -1,3 +1,7 @@
-lib/
 .publish/
 .github/
+public/
+site/
+webpack.config.babel.js
+gulpfile.babel.js
+

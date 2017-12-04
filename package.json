@@ -1,5 +1,5 @@
 {
-  "name": "@whitesmith/flooper",
+  "name": "flooper",
   "version": "1.0.0",
   "description": "Flex order looper. Uses flex order attribute to loop a list of items instead of duplication or expensive multiItem position calculations.",
   "main": "dist/flooper.js",
