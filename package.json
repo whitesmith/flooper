@@ -79,6 +79,9 @@
       }
     },
     "browserSupport": "IE 10+, Modern Browsers",
-    "size": {}
+    "size": {
+      "minified": "7.83 kB",
+      "gzip": "2.78 kB"
+    }
   }
 }

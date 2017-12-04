@@ -265,9 +265,9 @@ gulp.task("build", (cb) => {
     "clean",
     "webpack:lib",
     "webpack:site",
-    ["sass", "jade", "copy-assets"],
     "uglify",
     "size",
+    ["sass", "jade", "copy-assets"],
     cb
   );
 });
