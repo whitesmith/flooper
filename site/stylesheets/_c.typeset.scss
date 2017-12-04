@@ -6,13 +6,34 @@
 .c-typeset{
   position: relative;
 }
+.c-typeset__heading{
+  letter-spacing: -0.015em;
+}
 
+.c-typeset--kilo{
+  .c-typeset__heading{
+    @include fluid-type(32px, 64px, 280px, 1024px);
+    margin-bottom: $fl-px-grid-span*3;
+    line-height: 1;
+  }
+
+  .c-typeset__subheading{
+    font-size:px-to-rem(16px)
+  }
+
+  .c-typeset__label{
+    font-size: px-to-rem(12px);
+  }
+
+  @include mappy-bp(mdl){
+     .c-typeset__subheading{ font-size: px-to-rem(18px)}
+  }
+}
 
 .c-typeset--mega{
   .c-typeset__heading{
     @include fluid-type(32px, 108px, 280px, 1024px);
     margin-bottom: $fl-px-grid-span*3;
-    letter-spacing: -0.015em;
     line-height: 1;
   }
 
@@ -41,6 +62,21 @@
   @include mappy-bp(sm){
     .c-typeset__subheading { font-size: px-to-rem(24px) }
     .c-typeset__body-text  { font-size: 1rem; }
+  }
+}
+
+
+.c-typeset--full-blot{
+  .c-typeset__subheading{
+    font-weight: 500;
+    margin-bottom: $fl-px-grid-span*2;
+  }
+
+  .c-typeset__label{
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: $fl-gray;
   }
 }
 
