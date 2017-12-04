@@ -187,19 +187,25 @@ gulp.task("uglify", (cb) => {
  * write size to package.json
  * =======================================================
  */
-var libSize;
+var libSize,libSizeGzip;
 
 gulp.task("size:lib", function(){
   if (!isProduction) return
   let s = $.size();
   return gulp.src(`${paths.lib.dest}/${pkgName}.min.js`)
     .pipe(s)
-    .pipe($.notify({
-      onLast: true,
-      message: () => `Total size ${s.prettySize}`
-    }))
     .on('end', function(){
       libSize = s.prettySize;
+    })
+});
+
+gulp.task("size:lib:gzip", function(){
+  if (!isProduction) return
+  let s = $.size({gzip: true});
+  return gulp.src(`${paths.lib.dest}/${pkgName}.min.js`)
+    .pipe(s)
+    .on('end', function(){
+      libSizeGzip = s.prettySize;
     })
 });
 
@@ -207,7 +213,10 @@ gulp.task("write-size-to-pkg", function(){
   return gulp.src('./package.json')
     .pipe($.jsonEditor({
       flooper: {
-        size: libSize
+        size: {
+          minified: libSize,
+          gzip: libSizeGzip
+        }
       }
     })).pipe(gulp.dest('./'))
 })
@@ -215,6 +224,7 @@ gulp.task("write-size-to-pkg", function(){
 gulp.task("size", (cb) => {
   runSequence(
     "size:lib",
+    "size:lib:gzip",
     "write-size-to-pkg",
     cb
   )

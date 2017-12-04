@@ -13,7 +13,8 @@ div(class="c-hero__notes" data-animejs=`{
   div.c-hero__block(data-animejs)
     .c-typeset.c-typeset--note
       .c-typeset__label Size
-      .c-typeset__body-text #{flooper.size}
+      .c-typeset__body-text #{flooper.size.minified} minified <br> #{flooper.size.gzip} gzipped
+
   div.c-hero__block(data-animejs)
     .c-typeset.c-typeset--note
       .c-typeset__label Stats
