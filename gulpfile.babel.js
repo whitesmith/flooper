@@ -187,10 +187,11 @@ gulp.task("uglify", (cb) => {
  * write size to package.json
  * =======================================================
  */
+var libSize;
+
 gulp.task("size:lib", function(){
   if (!isProduction) return
-
-  const s = $.size();
+  let s = $.size();
   return gulp.src(`${paths.lib.dest}/${pkgName}.min.js`)
     .pipe(s)
     .pipe($.notify({
@@ -198,15 +199,25 @@ gulp.task("size:lib", function(){
       message: () => `Total size ${s.prettySize}`
     }))
     .on('end', function(){
-      return gulp.src('./package.json')
-        .pipe($.jsonEditor({
-          flooper: {
-            size: s.prettySize
-          }
-        }))
+      libSize = s.prettySize;
     })
 });
 
+gulp.task("write-size-to-pkg", function(){
+  return gulp.src('./package.json')
+    .pipe($.jsonEditor({
+      flooper: {
+        size: libSize
+      }
+    })).pipe(gulp.dest('./'))
+})
+
+gulp.task("size", (cb) => {
+  runSequence(
+    "size:lib",
+    "write-size-to-pkg"
+  )
+})
 /**
  * =======================================================
  * $ gulp sass
@@ -245,7 +256,7 @@ gulp.task("build", (cb) => {
     "webpack:site",
     ["sass", "jade", "copy-assets"],
     "uglify",
-    "size:lib",
+    "size",
     cb
   );
 });
