@@ -96,17 +96,17 @@ myFlooper.init();
 * `npm install`
 * `npm start` or `gulp`
 
-##### Production env <br> 
-To start a production like environment pass
-`npm start --env production`
+#### Production env <br> 
+To start a production like environment pass `--env production` flag.  
+Ex:`npm start --env production`
 
 
-##### Deploy site to gh-pages <br>
+#### Deploy site to gh-pages <br>
 * `npm run deploy:site`
-This will build a production ready optimized site and deploy it to `gh-pages` branch. R
+This will build a production ready optimized site and deploy it to `gh-pages` branch.
 
 ## Contributing
-See [our guidelines](./CONTRIBUTING.md)
+See [our guidelines](CONTRIBUTING.md)
 
 ## Authors & Credits <br>
 Tomás Marques <tomasmcm@whitesmith.co> (http://tomasmcm.design/) <br>
@@ -120,10 +120,10 @@ Renato de Leão <renatodeleao@whitesmith.co> (http://renatodeleao.com/)<br>
 - https://www.flickr.com/photos/oddsock/167157641
 
 ##### Demo Animations powered by the awesome libs
-- [Anime.js][http://animejs.com/] by [Julian Garnier](julianarnier.com)
-- [Scrollama][https://github.com/russellgoldenberg/scrollama/] by Russell Goldenberg
+- [Anime.js](http://animejs.com/) by [Julian Garnier](julianarnier.com)
+- [Scrollama](https://github.com/russellgoldenberg/scrollama/) by Russell Goldenberg
 
 
 ## License
-[The MIT License]('./LICENSE.md');
+[The MIT License]('LICENSE.md')
 
