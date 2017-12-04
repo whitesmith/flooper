@@ -1,6 +1,6 @@
 {
   "name": "flooper",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Flex order looper. Uses flex order attribute to loop a list of items instead of duplication or expensive multiItem position calculations.",
   "main": "dist/flooper.js",
   "module": "lib/index.js",
