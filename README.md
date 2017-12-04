@@ -1,26 +1,7 @@
 # Flooper.js
-Uses flex order attribute to loop a list of items instead of duplication or expensive multiItem position calculations.
+Uses flex order attribute to loop a list of items instead of duplication or expensive multiItem position calculations. See it in action at project page:http://whitesmith.github.io/Flooper.js/
 
-## Demo <br>
-http://whitesmith.github.io/Flooper.js/
-
-## Original <br>
-https://codepen.io/tomasmcm/pen/eeJpNb<br>
-
-## Dev Setup <br>
-* Clone the repo
-* `npm install`
-* `gulp`
-
-## Production Build <br> 
-`npm run build:prodcution`
-
-
-## Deploy site to gh-pages <br>
-`npm run deploy:site`
-
-
-# Usage & Options
+## Usage & Options
 
 #### HTML
 
@@ -63,6 +44,11 @@ instance.init();
  * @param {string} [flooperItem='.js-flooper-item'] - each item classname hook
  * @param {number} [bufferSize=10] - amount of pixels after block as past left side
  * @param {number} [speed=1] - amount of pixels container element should move per call.
+ * @param {function} onFloop - described next section
+ * @param {function} onStart - described next section
+ * @param {function} onPause - described next section
+ * @param {function} onPlay - described next section
+ * @param {function} onSlowmotion - described next section
  */
 
 // defaults
@@ -71,6 +57,11 @@ var instance = new Flooper({
   flooperItem: '.js-flooper-item', // string class selector
   bufferSize: 10,
   speed: 1,
+  onFloop: () => {}, //noop
+  onStart: () => {}, //noop
+  onPlay: () => {}, //noop
+  onPause: () => {}, //noop
+  onSlowmotion: () => {}, //noop
 });
 ``` 
 
@@ -88,20 +79,41 @@ myFlooper.init();
 | -------------------------| ------------------                    
 | `myFlooper.pause()`      | Pauses the flooper looping animation             
 | `myFlooper.play()`       | Resumes animation if paused                    
-| `myFlooper.slowMotion()` | Reduces speed to half. Currently default behaviour on mouseHover, but soon to be optional   
+| `myFlooper.slowMotion()` | Toggles slowmo mode. Reduces speed to half. Currently default behaviour on mouseHover, but soon to be optional  
+| `myFlooper.setCallbacks(obj)` | Used this to pass an object with desired callbacks after instanciation. Ex: `myFlooper.setCallbacks({onFloop: function(el, i){console.log(el)}})`
 
 | callback                 | Description                           
 | -------------------------| ------------------                    
-| `myFlooper.onFloop()`    | Each time an element order is changed   
+| `myFlooper.onFloop(el, order)` | Each time an element order is changed, returns flooped el and its current order 
 | `myFlooper.onStart()`     | when initialised           
 | `myFlooper.onPlay()`     | Self describing 
 | `myFlooper.onPause()` | Self describing 
 | `myFlooper.onSlowmotion()` | Self describing 
 
 
+## Developing
+* Clone the repo
+* `npm install`
+* `npm start` or `gulp`
+
+##### Production env <br> 
+To start a production like environment pass
+`npm start --env production`
+
+
+##### Deploy site to gh-pages <br>
+* `npm run deploy:site`
+This will build a production ready optimized site and deploy it to `gh-pages` branch. R
+
+## Contributing
+See [our guidelines](./CONTRIBUTING.md)
+
 ## Authors & Credits <br>
-Tomás Marques | https://github.com/tomasmcm | @tomasmcm<br>
-Renato de Leão | https://github.com/renatodeleao | @renatodeleao<br>
+Tomás Marques <tomasmcm@whitesmith.co> (http://tomasmcm.design/) <br>
+Renato de Leão <renatodeleao@whitesmith.co> (http://renatodeleao.com/)<br>
+
+##### Original Concept
+- [Codepen](https://codepen.io/tomasmcm/pen/eeJpNb) by [@tomasmcm](http://tomasmcm.design/)
 
 ##### Demo Images source:
 - https://www.pexels.com/photo/abbey-beatles-cc0-crossing-395714/
@@ -110,3 +122,8 @@ Renato de Leão | https://github.com/renatodeleao | @renatodeleao<br>
 ##### Demo Animations powered by the awesome libs
 - [Anime.js][http://animejs.com/] by [Julian Garnier](julianarnier.com)
 - [Scrollama][https://github.com/russellgoldenberg/scrollama/] by Russell Goldenberg
+
+
+## License
+[The MIT License]('./LICENSE.md');
+
