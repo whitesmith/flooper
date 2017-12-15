@@ -9,7 +9,7 @@
     "start:production": "gulp --env production",
     "build:production": "gulp build --env production",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy:site": "cd node_modules/gulp-gh-pages/ && npm install --save gift@0.10.1 && cd .. && cd .. && gulp deploy:site --env production"
+    "deploy:site": "gulp deploy --env production"
   },
   "repository": {
     "type": "git",
@@ -40,11 +40,11 @@
     "coffee-loader": "^0.7.2",
     "coffee-script": "^1.9.3",
     "del": "^3.0.0",
+    "gh-pages": "^1.1.0",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.0.1",
     "gulp-clean-css": "^3.9.0",
     "gulp-data": "^1.2.0",
-    "gulp-gh-pages": "^0.5.4",
     "gulp-jade": "^1.1.0",
     "gulp-json-editor": "^2.2.1",
     "gulp-load-plugins": "^1.0.0-rc.1",

@@ -14,6 +14,7 @@ import broswerSync from "browser-sync"
 import runSequence from "run-sequence"
 import minimist from "minimist"
 import webpack from "webpack"
+import ghpages from "gh-pages";
 
 // import webpackDevMiddleware from 'webpack-dev-middleware'
 // import webpackHotMiddleware from 'webpack-hot-middleware'
@@ -321,26 +322,12 @@ gulp.task("default", () => {
 
 /**
  * =======================================================
- * $ Deploy site to gitHubPages
- * [1] add CNAME copy task to have custom domains
- * [2] Not working due https://github.com/shinnn/gulp-gh-pages/issues/116
- *     use `npm run deploy:site` only works on master.
- *     http://ianmcnally.me/blog/2016/2/4/variables-in-npm-scripts
+ * $ gulp deploy --env production
  * =======================================================
  */
 
-gulp.task('deploy:gh-pages', function() {
-  return gulp.src(`${paths.site.dest}/**/*`)
-    .pipe($.ghPages({
-      message: `Update ${pkg.version} [timestamp]`
-    }));
+gulp.task("deploy", ["build"], function(cb) {
+  ghpages.publish(paths.site.dest, {
+    message: `Update ${pkg.version} [timestamp]`
+  }, cb);
 });
-
-
-// pass flag --env production when using
-gulp.task("deploy:site", () => {
-  runSequence(
-    "build",
-    "deploy:gh-pages"
-  )
-})
