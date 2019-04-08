@@ -229,7 +229,7 @@ See [our guidelines](CONTRIBUTING.md)
 
 ## Authors & Credits <br>
 Tomás Marques <tomasmcm@whitesmith.co> (http://tomasmcm.design/) <br>
-Renato de Leão <renatodeleao@whitesmith.co> (http://renatodeleao.com/)<br>
+Renato de Leão <renatodeleao@whitesmith.co> (http://positionrelative.co/)<br>
 
 ##### Original Concept
 - [Codepen](https://codepen.io/tomasmcm/pen/eeJpNb) by [@tomasmcm](http://tomasmcm.design/)
